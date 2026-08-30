@@ -1,0 +1,1583 @@
+     1→// ── LFRDCA Technologies · seed content ───────────────────────────────────────
+     2→// Plain, typed seed data for every model. Types come from @/lib/types (import
+     3→// types ONLY). Arrays stay real arrays here; seed.ts JSON.stringify's them into
+     4→// the SQLite string columns, and serializers parse them back at the API layer.
+     5→
+     6→import type {
+     7→  Service,
+     8→  Industry,
+     9→  Solution,
+    10→  TeamMember,
+    11→  Post,
+    12→  CaseStudy,
+    13→  Job,
+    14→  Testimonial,
+    15→  EventItem,
+    16→  Whitepaper,
+    17→  Faq,
+    18→} from "@/lib/types";
+    19→
+    20→export type ServiceSeed = Omit<Service, "id">;
+    21→export type IndustrySeed = Omit<Industry, "id">;
+    22→export type SolutionSeed = Omit<Solution, "id">;
+    23→export type TeamMemberSeed = Omit<TeamMember, "id">;
+    24→export type PostSeed = Omit<Post, "id">;
+    25→export type CaseStudySeed = Omit<CaseStudy, "id">;
+    26→export type JobSeed = Omit<Job, "id">;
+    27→export type TestimonialSeed = Omit<Testimonial, "id">;
+    28→export type EventItemSeed = Omit<EventItem, "id">;
+    29→export type WhitepaperSeed = Omit<Whitepaper, "id">;
+    30→export type FaqSeed = Omit<Faq, "id">;
+    31→
+    32→export interface SeedUser {
+    33→  name: string;
+    34→  email: string;
+    35→  password: string;
+    36→  role: "ADMIN" | "USER";
+    37→  phone?: string;
+    38→  company?: string;
+    39→  avatar?: string;
+    40→}
+    41→
+    42→// ── Users ─────────────────────────────────────────────────────────────────────
+    43→
+    44→export const seedUsers: SeedUser[] = [
+    45→  {
+    46→    name: "Satyam RojhaX",
+    47→    email: "admin@lfrdca.tech",
+    48→    password: "Admin@123",
+    49→    role: "ADMIN",
+    50→    phone: "+91 7361864847",
+    51→    company: "LFRDCA Technologies",
+    52→    avatar: "/images/team-1.png",
+    53→  },
+    54→  {
+    55→    name: "Demo Client",
+    56→    email: "demo@lfrdca.tech",
+    57→    password: "Demo@123",
+    58→    role: "USER",
+    59→    phone: "+91 98765 43210",
+    60→    company: "Demo Enterprises Pvt Ltd",
+    61→    avatar: "/images/team-6.png",
+    62→  },
+    63→];
+    64→
+    65→// ── Services ──────────────────────────────────────────────────────────────────
+    66→
+    67→export const services: ServiceSeed[] = [
+    68→  {
+    69→    slug: "ai-development",
+    70→    title: "AI Development",
+    71→    tagline: "Custom AI that actually ships — not slideware.",
+    72→    description:
+    73→      "We design and engineer custom AI systems — from LLM copilots to computer vision — that slot into the way your business already works.",
+    74→    longDescription: `Every AI engagement at LFRDCA starts with a discovery sprint, not a sales deck. We sit with your team, map the workflows where decisions actually get made, and hunt for the two or three use cases where AI earns its keep — a support assistant that deflects real tickets, a document pipeline that ends copy-paste misery, a forecast your planners actually trust. If a use case survives our feasibility gauntlet, we prototype it in weeks; if it doesn't, we tell you honestly and buy you a coffee instead.
+    75→
+    76→Then we build like engineers, not magicians: retrieval pipelines grounded in your own data, evaluation suites that catch regressions before your users do, guardrails tuned to your compliance team's blood pressure, and model choices justified by benchmarks rather than hype cycles. You watch progress on a live demo every fortnight — no black boxes, no "trust us, it's training."
+    77→
+    78→Finally, we ship. Models land in production behind proper APIs with monitoring, fallbacks, and cost dashboards — and your team learns to operate everything through hands-on enablement sessions. When we leave, the AI is genuinely yours: documented, observable, and quietly compounding value while you sleep.`,
+    79→    icon: "brain-circuit",
+    80→    image: "/images/blog-1.png",
+    81→    features: [
+    82→      "Custom LLM applications, copilots & agents",
+    83→      "Retrieval-augmented generation (RAG) over private data",
+    84→      "Computer vision & document intelligence",
+    85→      "Model fine-tuning & evaluation frameworks",
+    86→      "AI feasibility audits & opportunity mapping",
+    87→      "Guardrails, observability & cost control",
+    88→      "Team enablement & AI-literacy workshops",
+    89→    ],
+    90→    deliverables: [
+    91→      "AI opportunity map with ranked use cases",
+    92→      "Working prototype in 4–6 weeks",
+    93→      "Production-grade AI system with APIs",
+    94→      "Evaluation report & guardrail suite",
+    95→      "Deployment runbook & monitoring dashboards",
+    96→      "Enablement workshops for your team",
+    97→    ],
+    98→    order: 1,
+    99→  },
+   100→  {
+   101→    slug: "data-analytics",
+   102→    title: "Data Analytics",
+   103→    tagline: "Dashboards people actually open on Monday morning.",
+   104→    description:
+   105→      "We turn scattered data into decision-ready analytics — self-serve dashboards, KPI frameworks, and the pipelines that keep them honest.",
+   106→    longDescription: `Most analytics projects die of loneliness: beautiful dashboards nobody opens. We start instead from decisions — the Monday-morning questions your managers argue about — and work backwards to the metrics, definitions, and data they need. Our discovery phase interviews the people who will actually use the thing, so what we build answers real questions instead of decorating an unused browser tab.
+   107→
+   108→Then we build the boring-but-vital foundations: clean pipelines, a semantic layer with agreed metric definitions (so "revenue" means one thing, company-wide), and dashboards designed like editorial pages — the headline number first, the detail available on request. Everything is self-serve where it should be and curated where it must be.
+   109→
+   110→Finally, we ship analytics that behave like products: versioned, documented, and adopted through training sessions your team won't sleep through. Two weeks after launch we review usage patterns and prune what's being ignored — because a dashboard nobody reads is a bug, and we fix those.`,
+   111→    icon: "bar-chart-3",
+   112→    image: "/images/blog-4.png",
+   113→    features: [
+   114→      "KPI & metric framework design",
+   115→      "Self-serve BI dashboards (Looker, Power BI, Metabase)",
+   116→      "ETL/ELT pipelines & data warehousing",
+   117→      "Semantic layer & metric governance",
+   118→      "Cohort, funnel & retention analysis",
+   119→      "Automated reporting & anomaly alerting",
+   120→      "Analytics team enablement & documentation",
+   121→    ],
+   122→    deliverables: [
+   123→      "Metrics dictionary & KPI framework",
+   124→      "Warehouse-ready data pipelines",
+   125→      "Role-based dashboard suite",
+   126→      "Automated weekly insight digests",
+   127→      "Adoption training & office hours",
+   128→      "Analytics health-check after 30 days",
+   129→    ],
+   130→    order: 2,
+   131→  },
+   132→  {
+   133→    slug: "data-science",
+   134→    title: "Data Science",
+   135→    tagline: "Experiments with a lab's discipline and a startup's deadlines.",
+   136→    description:
+   137→      "From demand forecasting to pricing experiments, we run rigorous data science that survives contact with real business decisions.",
+   138→    longDescription: `Good data science is seventy percent asking the right question, and we're relentless about that first seventy percent. Our discovery phase frames hypotheses alongside your domain experts — what would change a decision if we knew it? — and designs the analysis around the decision, not the algorithm. We'd rather kill a sexy model than ship one nobody can act on.
+   139→
+   140→Then we experiment like a proper lab: baselines first, honest out-of-sample validation, uncertainty quantified rather than hidden, and experiments (A/B or otherwise) designed with enough statistical power to actually mean something. You get findings written in business English — caveats intact — not a notebook dump with a ribbon on it.
+   141→
+   142→Finally, we hand over both the science and the capability: documented models, reproducible pipelines, and playbooks so your analysts can rerun and extend the work. Where it makes sense, the models graduate into production ML systems with our engineering team — no messy middle left behind.`,
+   143→    icon: "flask-conical",
+   144→    image: "/images/blog-8.png",
+   145→    features: [
+   146→      "Demand forecasting & inventory optimisation",
+   147→      "Pricing & elasticity analysis",
+   148→      "A/B testing & causal inference",
+   149→      "Customer segmentation & lifetime-value models",
+   150→      "Risk scoring & propensity modelling",
+   151→      "Statistical process control",
+   152→      "Research-grade documentation & reproducibility",
+   153→    ],
+   154→    deliverables: [
+   155→      "Framed hypothesis & analysis plan",
+   156→      "Baseline models & validation report",
+   157→      "Production-ready model artefacts",
+   158→      "Experiment design & results playbook",
+   159→      "Executive findings deck in business English",
+   160→      "Reproducible code repository",
+   161→    ],
+   162→    order: 3,
+   163→  },
+   164→  {
+   165→    slug: "machine-learning",
+   166→    title: "Machine Learning",
+   167→    tagline: "Models in production, not in notebooks.",
+   168→    description:
+   169→      "We engineer end-to-end ML systems — training pipelines, feature stores, and deployment — that stay accurate, monitored, and cheap to run.",
+   170→    longDescription: `The gap between a notebook that demos well and a model that earns money in production is where most ML projects are quietly buried. Our discovery phase maps that terrain early: data availability, drift risk, latency budgets, retraining triggers, and who gets paged at 2 a.m. when predictions go weird. We design for day 400, not just day one.
+   171→
+   172→Then we build the machine that builds the model: versioned datasets, reproducible training pipelines, feature stores that keep training and serving consistent, and automated evaluation gates so a regression never reaches customers silently. Every model ships with a model card — its data, its limits, its expected behaviour — because undocumented models are organisational debt with interest.
+   173→
+   174→Finally, we deploy with an operator's discipline: canary rollouts, drift monitoring, champion–challenger testing, and cost dashboards that keep cloud bills polite. When the model's world changes, retraining is a pipeline run — not a three-month archaeology project through a dead intern's folders.`,
+   175→    icon: "bot",
+   176→    image: "/images/blog-5.png",
+   177→    features: [
+   178→      "End-to-end MLOps pipelines (training → registry → serving)",
+   179→      "Feature stores & data versioning",
+   180→      "Batch & real-time model serving",
+   181→      "Drift detection & automated retraining",
+   182→      "Champion–challenger evaluation",
+   183→      "Model cards & lineage documentation",
+   184→      "Inference cost optimisation",
+   185→    ],
+   186→    deliverables: [
+   187→      "ML system architecture blueprint",
+   188→      "Reproducible training pipelines",
+   189→      "Deployed model endpoints (batch + real-time)",
+   190→      "Monitoring & alerting dashboards",
+   191→      "Model cards & operational runbooks",
+   192→      "Handover training for your ML team",
+   193→    ],
+   194→    order: 4,
+   195→  },
+   196→  {
+   197→    slug: "cloud-devops",
+   198→    title: "Cloud & DevOps",
+   199→    tagline: "Infrastructure that deploys on Fridays and sleeps at night.",
+   200→    description:
+   201→      "We build cloud foundations, CI/CD, and observability so your team ships faster — and your on-call engineer actually sleeps.",
+   202→    longDescription: `Cloud should be an accelerant, not a tax. Our discovery phase audits what you have — the mystery bills, the snowflake servers, the deploy ritual that requires one specific person to be awake — and designs a target architecture your team can genuinely operate. We're platform-agnostic with strong opinions: AWS, GCP, or Azure, chosen for your workload, not our comfort.
+   203→
+   204→Then we build the boring glory: infrastructure as code, CI/CD pipelines with real quality gates, environments that spin up on demand and tear down automatically, and observability wired in from day one — logs, metrics, traces, and alerts that page only when a human is actually needed. Deploys become a non-event, which is exactly how they should feel.
+   205→
+   206→Finally, we harden and hand over: security baselines, cost budgets with alerts before the invoice shocks you, disaster-recovery drills your auditors will love, and runbooks written for a tired human at 3 a.m. rather than a fresh one at a conference. We leave your team faster than we found it.`,
+   207→    icon: "cloud",
+   208→    image: "/images/blog-3.png",
+   209→    features: [
+   210→      "Cloud architecture & migration (AWS · GCP · Azure)",
+   211→      "Infrastructure as code (Terraform, Pulumi)",
+   212→      "CI/CD pipelines & release automation",
+   213→      "Kubernetes & container platforms",
+   214→      "Observability: logging, metrics, tracing",
+   215→      "Cost optimisation & FinOps",
+   216→      "Security baselines & disaster recovery",
+   217→    ],
+   218→    deliverables: [
+   219→      "Cloud architecture review & roadmap",
+   220→      "Fully codified infrastructure",
+   221→      "One-click (honestly) deploy pipelines",
+   222→      "Observability stack with actionable alerts",
+   223→      "Cost report with a prioritised savings plan",
+   224→      "Runbooks & a DR drill report",
+   225→    ],
+   226→    order: 5,
+   227→  },
+   228→  {
+   229→    slug: "web-development",
+   230→    title: "Web Development",
+   231→    tagline: "Fast, editorial-grade web products with real craft.",
+   232→    description:
+   233→      "We design and build web applications — marketing sites, portals, dashboards — with obsessive attention to speed, accessibility, and detail.",
+   234→    longDescription: `Your website is your first impression and, too often, your slowest one. Discovery starts with your users and your goals: who's arriving, what they need in the first five seconds, and what journey turns a visit into a conversation. We audit performance and accessibility up front, because a gorgeous site that loads in six seconds is a brochure nobody reads.
+   235→
+   236→Then we build with modern stack discipline — Next.js and TypeScript by default, component systems instead of page-by-page hacks, CMS integrations your marketing team can actually operate, and animation used like seasoning rather than sauce. Every build is responsive, accessible, and Lighthouse-audited before you ever see it.
+   237→
+   238→Finally, we ship and stay for the part that matters: analytics wired in, SEO foundations solid, edge-cached speed, and an iteration cadence that treats launch as the starting line. Your site should get better every month it lives — so we build it so it can.`,
+   239→    icon: "globe",
+   240→    image: "/images/blog-2.png",
+   241→    features: [
+   242→      "Next.js / React application development",
+   243→      "Design systems & component libraries",
+   244→      "Headless CMS integration",
+   245→      "Performance & Core Web Vitals optimisation",
+   246→      "Accessibility (WCAG 2.2) engineering",
+   247→      "SEO architecture & structured data",
+   248→      "E-commerce & customer portals",
+   249→    ],
+   250→    deliverables: [
+   251→      "UX flows & content architecture",
+   252→      "Component-based production codebase",
+   253→      "CMS with editor training",
+   254→      "Lighthouse & accessibility audit report",
+   255→      "Analytics & event tracking setup",
+   256→      "30-day post-launch tuning",
+   257→    ],
+   258→    order: 6,
+   259→  },
+   260→  {
+   261→    slug: "mobile-development",
+   262→    title: "Mobile Development",
+   263→    tagline: "Native-feeling apps your users keep on the home screen.",
+   264→    description:
+   265→      "We build cross-platform mobile apps — React Native and Flutter — that feel native, work offline, and ship to both stores without drama.",
+   266→    longDescription: `A mobile app either earns a home-screen slot or gets deleted — there's no respectable middle ground. Discovery for us means ruthless scoping: the one core job the app must do brilliantly, the flows that prove value in the first session, and an honest verdict on whether you need an app at all (sometimes the answer is a great PWA, and we'll say so to your face).
+   267→
+   268→Then we build with React Native or Flutter — one codebase, two platforms, native-quality motion and gestures. Offline-first data layers, push notifications that respect the user, biometric auth where it genuinely matters, and release pipelines that push to TestFlight and Play internal testing on every commit.
+   269→
+   270→Finally, we ship through store review and keep shipping: crash monitoring, retention analytics, and a feature cadence informed by what users actually do rather than what the roadmap hoped. Apps are products, not projects — we build them to live, learn, and improve.`,
+   271→    icon: "smartphone",
+   272→    image: "/images/blog-9.png",
+   273→    features: [
+   274→      "React Native & Flutter development",
+   275→      "Offline-first data synchronisation",
+   276→      "Push notifications & deep linking",
+   277→      "Biometric authentication & secure storage",
+   278→      "App Store & Play Store release automation",
+   279→      "Crash reporting & product analytics",
+   280→      "PWA development & migration",
+   281→    ],
+   282→    deliverables: [
+   283→      "Product scope & interactive prototype",
+   284→      "Cross-platform production app",
+   285→      "Store listings & release pipelines",
+   286→      "Crash & analytics instrumentation",
+   287→      "Post-launch iteration plan",
+   288→    ],
+   289→    order: 7,
+   290→  },
+   291→  {
+   292→    slug: "cybersecurity",
+   293→    title: "Cybersecurity",
+   294→    tagline: "Security as a habit, not a quarterly panic.",
+   295→    description:
+   296→      "We audit, harden, and monitor your stack — application security, cloud posture, and compliance readiness — with plain-language reporting.",
+   297→    longDescription: `Security theatre is easy; security that holds is engineering. Our discovery starts with a threat model: what you have that's worth stealing, who's likely to come for it, and which doors they'd try first. We map crown-jewel data and attack paths before touching a scanner, so findings arrive prioritised by real risk — not by scanner enthusiasm.
+   298→
+   299→Then we harden systematically: application security reviews (code, dependencies, auth flows), cloud posture checks against CIS benchmarks, secrets swept and rotated, and detection wired into your actual logs. We work with your developers as allies, not auditors — fixes land as pull requests with clear explanations, not as 90-page PDFs of shame.
+   300→
+   301→Finally, we make it a habit: continuous monitoring, quarterly re-checks, tabletop exercises for the incidents we hope never happen, and compliance readiness (SOC 2, ISO 27001, GDPR, DPDP) built into operations instead of bolted on in a panic before an audit.`,
+   302→    icon: "shield",
+   303→    image: "/images/blog-6.png",
+   304→    features: [
+   305→      "Security audits & penetration testing",
+   306→      "Cloud security posture management",
+   307→      "Application security (AppSec) reviews",
+   308→      "Threat modelling workshops",
+   309→      "Compliance readiness (SOC 2 · ISO 27001 · GDPR · DPDP)",
+   310→      "Continuous monitoring & incident-response playbooks",
+   311→      "Developer security training",
+   312→    ],
+   313→    deliverables: [
+   314→      "Threat model & risk register",
+   315→      "Prioritised findings report with fixes",
+   316→      "Hardened cloud & application configurations",
+   317→      "Detection rules & alert runbooks",
+   318→      "Compliance gap assessment",
+   319→      "Security training for your team",
+   320→    ],
+   321→    order: 8,
+   322→  },
+   323→];
+   324→
+   325→// ── Industries ────────────────────────────────────────────────────────────────
+   326→
+   327→export const industries: IndustrySeed[] = [
+   328→  {
+   329→    slug: "healthcare",
+   330→    title: "Healthcare",
+   331→    description: `Healthcare runs on data that is sensitive, siloed, and stubbornly paper-flavoured. We help hospitals, diagnostics chains, and health-tech startups unify patient, operational, and billing data — with privacy engineering (DPDP/HIPAA-aligned practices, de-identification, audit trails) baked in from the first architecture diagram rather than sprinkled on at the end.
+   332→
+   333→From demand forecasting for OPD staffing to diagnostic-imaging assistants and NLP over clinical notes, our healthcare work shares one obsession: clinician time is the scarcest resource in the system. If a model doesn't give a nurse or a doctor minutes back, it doesn't ship.`,
+   334→    image: "/images/case-2.png",
+   335→    stats: [
+   336→      { label: "Hospitals & health-tech clients", value: "18+" },
+   337→      { label: "Average reporting time saved", value: "31%" },
+   338→      { label: "Patient-flow prediction accuracy", value: "94%" },
+   339→    ],
+   340→    useCases: [
+   341→      "Patient-flow & bed-occupancy forecasting",
+   342→      "Clinical document intelligence (OCR + NLP)",
+   343→      "Diagnostic imaging triage assistance",
+   344→      "Supply-chain & pharmacy inventory optimisation",
+   345→      "Readmission-risk scoring & care outreach",
+   346→    ],
+   347→    order: 1,
+   348→  },
+   349→  {
+   350→    slug: "finance",
+   351→    title: "Finance",
+   352→    description: `Banks, NBFCs, and fintechs live with a paradox: move fast on data, but never drop a decimal. We build for both — real-time fraud scoring, credit-risk models with the explainability regulators accept, and data platforms that make audits a formality rather than a fire drill.
+   353→
+   354→Our fintech work leans on rigorous MLOps: champion–challenger model governance, drift monitoring tied to explainability reports, and pipelines where every number can be traced to its source. Compliance teams get transparency; product teams get speed. Both get sleep.`,
+   355→    image: "/images/case-3.png",
+   356→    stats: [
+   357→      { label: "Financial-services engagements", value: "22+" },
+   358→      { label: "Fraud caught before settlement", value: "₹120Cr+" },
+   359→      { label: "Model-governance audit pass rate", value: "100%" },
+   360→    ],
+   361→    useCases: [
+   362→      "Real-time fraud detection & case triage",
+   363→      "Credit scoring with explainable AI",
+   364→      "AML transaction monitoring",
+   365→      "Customer 360 & next-best-action models",
+   366→      "Regulatory reporting automation",
+   367→    ],
+   368→    order: 2,
+   369→  },
+   370→  {
+   371→    slug: "retail",
+   372→    title: "Retail",
+   373→    description: `Retail margins are won in the unglamorous middle: forecasts, price tags, and shelf decisions. We build intelligence for that middle — demand forecasting that respects festivals and weather, pricing engines that notice competitor moves, and customer analytics that turn transactions into relationships.
+   374→
+   375→Whether you run eight stores or eight hundred, we meet your stack where it lives — POS, ERP, e-commerce, marketplace feeds — and build a single view of inventory and customer that merchandisers actually use on Monday mornings.`,
+   376→    image: "/images/case-1.png",
+   377→    stats: [
+   378→      { label: "Retail & D2C clients", value: "25+" },
+   379→      { label: "Average forecast-accuracy uplift", value: "+19%" },
+   380→      { label: "Inventory carrying-cost reduction", value: "24%" },
+   381→    ],
+   382→    useCases: [
+   383→      "Demand forecasting & auto-replenishment",
+   384→      "Dynamic pricing & markdown optimisation",
+   385→      "Customer segmentation & CLV modelling",
+   386→      "Marketplace & omnichannel analytics",
+   387→      "Personalised recommendations",
+   388→    ],
+   389→    order: 3,
+   390→  },
+   391→  {
+   392→    slug: "manufacturing",
+   393→    title: "Manufacturing",
+   394→    description: `A factory generates terabytes and insights in inverse proportion. We connect shop-floor sensors, SCADA historians, and ERP systems into a single operational data layer — then add the models that matter: predictive maintenance, visual quality inspection, and OEE analytics that survive the Gemba walk.
+   395→
+   396→Our teams pair data scientists with process engineers who've stood next to a line at 2 a.m. The result is analytics operators trust — with alerts wired into work orders, not into a forgotten inbox.`,
+   397→    image: "/images/case-4.png",
+   398→    stats: [
+   399→      { label: "Manufacturing & industrial clients", value: "14+" },
+   400→      { label: "Unplanned downtime reduction", value: "37%" },
+   401→      { label: "Defect-detection accuracy", value: "99.2%" },
+   402→    ],
+   403→    useCases: [
+   404→      "Predictive maintenance & anomaly detection",
+   405→      "Visual quality inspection (computer vision)",
+   406→      "OEE & downtime analytics",
+   407→      "Energy consumption optimisation",
+   408→      "Digital twin & what-if simulation",
+   409→    ],
+   410→    order: 4,
+   411→  },
+   412→];
+   413→
+   414→// ── Solutions ─────────────────────────────────────────────────────────────────
+   415→
+   416→export const solutions: SolutionSeed[] = [
+   417→  {
+   418→    slug: "data-platform",
+   419→    title: "LFRDCA Data Platform",
+   420→    tagline: "One home for your data — from raw to reliable.",
+   421→    description: `The Data Platform is our flagship foundation: a modern lakehouse stack that ingests everything — databases, SaaS tools, event streams, and those spreadsheets that "are totally the source of truth" — and turns it all into governed, queryable, documented datasets your whole company can trust.
+   422→
+   423→Built on proven components (warehouse or lakehouse, orchestrated pipelines, data contracts, lineage, and quality tests), it deploys in weeks and scales for years. Think of it as the plumbing and the library card catalogue for everything else you will ever want to do with data.`,
+   424→    image: "/images/blog-2.png",
+   425→    capabilities: [
+   426→      "Batch & streaming ingestion (CDC, APIs, events)",
+   427→      "Warehouse / lakehouse architecture (Snowflake, BigQuery, Databricks)",
+   428→      "Data contracts & schema enforcement",
+   429→      "Automated data-quality tests & anomaly alerts",
+   430→      "Lineage, catalogue & business glossary",
+   431→      "Role-based access & PII masking",
+   432→    ],
+   433→    outcomes: [
+   434→      { label: "Time-to-insight for new datasets", value: "Days, not months" },
+   435→      { label: "Pipeline reliability", value: "99.9%" },
+   436→      { label: "Duplicate & shadow-report reduction", value: "-70%" },
+   437→    ],
+   438→  },
+   439→  {
+   440→    slug: "ai-assistants",
+   441→    title: "LFRDCA AI Assistants",
+   442→    tagline: "Coworkers that read everything and never sleep.",
+   443→    description: `Our AI Assistants are custom-built copilots grounded in your own knowledge — policies, products, tickets, codebases — so they answer like your best-informed teammate rather than a generic chatbot. RAG architecture, domain-tuned prompts, and hard guardrails keep answers accurate, cited, and on-brand.
+   444→
+   445→They deploy where your people already work: web, Slack, Teams, WhatsApp, or inside your product. Every assistant ships with an evaluation suite, conversation analytics, and clear escalation to humans — because the goal is trusted autonomy, not novelty theatre.`,
+   446→    image: "/images/ai-lab.png",
+   447→    capabilities: [
+   448→      "RAG over private documents & knowledge bases",
+   449→      "Multi-channel deployment (web, Slack, Teams, WhatsApp)",
+   450→      "Multilingual support (English + major Indian languages)",
+   451→      "Conversation analytics & insight mining",
+   452→      "Guardrails, red-teaming & content filters",
+   453→      "Human-in-the-loop escalation flows",
+   454→    ],
+   455→    outcomes: [
+   456→      { label: "Average ticket deflection", value: "60%+" },
+   457→      { label: "New-hire onboarding speed", value: "3× faster" },
+   458→      { label: "Answer accuracy in evaluations", value: "95%" },
+   459→    ],
+   460→  },
+   461→  {
+   462→    slug: "analytics-cloud",
+   463→    title: "LFRDCA Analytics Cloud",
+   464→    tagline: "BI that reads like your best analyst wrote it.",
+   465→    description: `Analytics Cloud is our managed BI layer: a curated suite of dashboards, self-serve exploration, and automated insight digests built on top of your Data Platform. Metrics are defined once, centrally, and reused everywhere — ending the "which revenue number is right" debate for good.
+   466→
+   467→The experience is deliberately editorial: headline numbers first, honest context alongside, drill-down available but never required. Scheduled digests deliver the week's movements to inboxes and Slack every Monday, so insight arrives even when nobody opens a dashboard.`,
+   468→    image: "/images/data-viz.png",
+   469→    capabilities: [
+   470→      "Governed metric layer (one definition of 'revenue')",
+   471→      "Role-based dashboard suites for every team",
+   472→      "Self-serve exploration with guardrails",
+   473→      "Automated weekly insight digests",
+   474→      "Anomaly alerts on key metrics",
+   475→      "Embedded analytics for customer-facing products",
+   476→    ],
+   477→    outcomes: [
+   478→      { label: "Weekly active dashboard users", value: "78% of staff" },
+   479→      { label: "Reporting effort reduction", value: "-45%" },
+   480→      { label: "Decisions backed by data", value: "2× more" },
+   481→    ],
+   482→  },
+   483→];
+   484→
+   485→// ── Team ──────────────────────────────────────────────────────────────────────
+   486→
+   487→export const teamMembers: TeamMemberSeed[] = [
+   488→  {
+   489→    name: "Satyam RojhaX",
+   490→    role: "Founder & CEO",
+   491→    bio: "Satyam founded LFRDCA on the conviction that Indian enterprises deserve AI built with editorial care and engineering rigour. He still reviews every architecture diagram — and, annoyingly, every comma.",
+   492→    image: "/images/team-1.png",
+   493→    linkedin: "https://www.linkedin.com/in/satyam-rojhax",
+   494→    twitter: "https://x.com/satyamrojhax",
+   495→    order: 1,
+   496→  },
+   497→  {
+   498→    name: "Dr. Ananya Deshmukh",
+   499→    role: "Chief Data Scientist",
+   500→    bio: "Ananya holds a PhD in statistical learning and has published extensively on forecasting under uncertainty. She keeps our models honest and our p-values humble.",
+   501→    image: "/images/team-2.png",
+   502→    linkedin: "https://www.linkedin.com/in/ananya-deshmukh",
+   503→    order: 2,
+   504→  },
+   505→  {
+   506→    name: "Vikram Malhotra",
+   507→    role: "CTO",
+   508→    bio: "Vikram has architected data platforms for three unicorns and one very stubborn bank. He believes boring infrastructure is the most exciting kind there is.",
+   509→    image: "/images/team-3.png",
+   510→    linkedin: "https://www.linkedin.com/in/vikram-malhotra",
+   511→    order: 3,
+   512→  },
+   513→  {
+   514→    name: "Priya Nair",
+   515→    role: "Head of AI Engineering",
+   516→    bio: "Priya ships LLM systems that survive production — guardrails, evaluations, and all. Her prototypes have a notorious habit of becoming products.",
+   517→    image: "/images/team-4.png",
+   518→    linkedin: "https://www.linkedin.com/in/priya-nair",
+   519→    order: 4,
+   520→  },
+   521→  {
+   522→    name: "Suresh Iyer",
+   523→    role: "Head of Analytics",
+   524→    bio: "Suresh spent a decade turning retail and finance data into decisions. He designs dashboards like newspaper front pages: headline first, noise nowhere.",
+   525→    image: "/images/team-5.png",
+   526→    linkedin: "https://www.linkedin.com/in/suresh-iyer",
+   527→    order: 5,
+   528→  },
+   529→  {
+   530→    name: "Ritika Sharma",
+   531→    role: "Head of People",
+   532→    bio: "Ritika built our culture of sketchbooks, honest retros, and unlimited filter coffee. She hires for curiosity and keeps the humans humming.",
+   533→    image: "/images/team-6.png",
+   534→    linkedin: "https://www.linkedin.com/in/ritika-sharma",
+   535→    order: 6,
+   536→  },
+   537→  {
+   538→    name: "Arjun Khanna",
+   539→    role: "DevOps Lead",
+   540→    bio: "Arjun automates everything twice, then a third time for fun. His pipelines deploy on Fridays because they have earned the right.",
+   541→    image: "/images/team-7.png",
+   542→    linkedin: "https://www.linkedin.com/in/arjun-khanna",
+   543→    order: 7,
+   544→  },
+   545→  {
+   546→    name: "Manoj Verma",
+   547→    role: "Delivery Manager",
+   548→    bio: "Manoj has delivered 120+ projects across nine countries without missing a milestone. His status updates are so calm they have been mistaken for poetry.",
+   549→    image: "/images/team-8.png",
+   550→    linkedin: "https://www.linkedin.com/in/manoj-verma",
+   551→    order: 8,
+   552→  },
+   553→];
+   554→
+   555→// ── Blog posts ────────────────────────────────────────────────────────────────
+   556→
+   557→export const posts: PostSeed[] = [
+   558→  {
+   559→    slug: "your-data-is-a-mess-start-anywhere",
+   560→    title: "Your data is a mess — that's okay, start anyway",
+   561→    excerpt:
+   562→      "Perfect data is a fairy tale told in conference keynotes. Here's how to find real value in the mess you actually have.",
+   563→    category: "Analytics",
+   564→    tags: ["data culture", "getting started", "analytics"],
+   565→    image: "/images/blog-1.png",
+   566→    author: "Suresh Iyer",
+   567→    authorRole: "Head of Analytics",
+   568→    readTime: 5,
+   569→    views: 842,
+   570→    createdAt: "2026-08-18T10:00:00.000Z",
+   571→    content: `Every second consulting engagement starts the same way: an apologetic slide titled "Current State of Our Data" with more red boxes than green ones. The client braces for a lecture. We pour the coffee and say the thing nobody expects: *good — let's start anyway.*
+   572→
+   573→## The perfection myth
+   574→
+   575→There's a persistent story in our industry that analytics and AI must wait for clean data, governed catalogues, and a completed digital transformation. It's a lovely story. It's also a convenient way to postpone ever making a decision. Data is a living thing — it degrades the moment you look away, like a garden or a gym membership. Waiting for perfection means waiting forever.
+   576→
+   577→> "We'll start the analytics programme once the data is clean" is the corporate version of "I'll start running once I'm fit."
+   578→
+   579→## Start where the pain is
+   580→
+   581→Instead of fixing everything, fix one decision. Find the question your team argues about every week — pricing, staffing, inventory, churn — and trace only the data that informs it. You'll discover three things:
+   582→
+   583→- The mess is rarely uniform. The data feeding one painful decision is usually 70% usable.
+   584→- Definitions, not rows, are the real problem. Half the argument is that "active customer" means three different things.
+   585→- Fixing a metric definition is a meeting. Fixing "all data" is a mythology.
+   586→
+   587→## Three honest starting rules
+   588→
+   589→1. **Pick a decision, not a dataset.** Dashboards built from data "we already have" answer questions nobody asked. Decisions pull you toward the right data.
+   590→2. **Write definitions down before writing code.** One page: metric name, formula, owner, known caveats. This single document kills more arguments than any tool you can buy.
+   591→3. **Ship the ugly version in two weeks.** A rough number with a known caveat beats a perfect number arriving next fiscal year. Label the caveats loudly and proudly.
+   592→
+   593→## The compounding part
+   594→
+   595→Here's what happens after the first small win: someone else wants one. The metric definitions get reused. The pipeline built for one decision turns out to serve three. Six months later you look up and — quietly, without a transformation programme — you have governance, because governance is just definitions people agreed to use.
+   596→
+   597→Perfect data is a destination you reach by walking, not by waiting. Lace up. Start ugly. We'll bring the coffee.`,
+   598→  },
+   599→  {
+   600→    slug: "the-honest-guide-to-ai-adoption",
+   601→    title: "The honest guide to AI adoption (no hype, we promise)",
+   602→    excerpt:
+   603→      "Three years and forty models later, our private list of enterprise AI failure modes — finally published as penance.",
+   604→    category: "AI",
+   605→    tags: ["ai strategy", "llm", "adoption"],
+   606→    image: "/images/blog-2.png",
+   607→    author: "Satyam RojhaX",
+   608→    authorRole: "Founder & CEO",
+   609→    readTime: 7,
+   610→    views: 691,
+   611→    createdAt: "2026-08-05T09:30:00.000Z",
+   612→    content: `We've spent three years helping Indian enterprises adopt AI, and we've kept a private list of every failure mode we've witnessed. This is that list, published. Consider it penance for all the keynote talks that over-promised.
+   613→
+   614→## Where AI actually pays today
+   615→
+   616→Narrowly, boringly, and reliably, AI pays in four places right now:
+   617→
+   618→- **Document-heavy workflows** — invoices, claims, contracts, support tickets. Anything where humans copy text between systems is a retirement party for someone's Friday.
+   619→- **Assisted search over private knowledge** — policies, product docs, past tickets. RAG systems answer in seconds what used to take a Slack archaeology dig.
+   620→- **Forecasting and triage** — demand, risk, prioritisation. Models that rank, score, and warn quietly save real money.
+   621→- **Code and content acceleration** — draft generation with human review, where the human stays editor-in-chief.
+   622→
+   623→Notice what's absent: fully autonomous agents running your operations. We're as excited as anyone, but we deploy autonomy the way airlines deploy autopilot — with a pilot, checklists, and a very loud horn.
+   624→
+   625→> If your AI initiative can't name the decision it improves or the hours it returns, it's a press release, not a project.
+   626→
+   627→## The five failure modes
+   628→
+   629→1. **Pilot purgatory.** A brilliant demo that never meets production because nobody planned for evaluation, latency, or cost at scale. *Fix:* define production criteria before the prototype exists.
+   630→2. **The data surprise.** The model is fine; the data feeding it is three undocumented spreadsheets and a CRM field repurposed as a notepad. *Fix:* a two-week data reality check before any model work.
+   631→3. **Governance theatre.** A 60-page AI policy nobody reads. *Fix:* one page of rules the team can recite — what data goes in, what gets reviewed, who owns errors.
+   632→4. **Tool-first thinking.** Buying a platform and hunting for a problem to justify it. *Fix:* start from a workflow with a cost or delay you can measure.
+   633→5. **No owner.** The pilot's champion gets transferred and the system quietly rots. *Fix:* name a business owner and an engineering owner on day one.
+   634→
+   635→## Our playbook in one paragraph
+   636→
+   637→Run a discovery sprint that ranks use cases by value and feasibility. Prototype the winner in four to six weeks with real data and an evaluation harness. Ship behind guardrails with monitoring from day one, then expand only what earns it. Boring? Deliberately. We'd rather be the least dramatic AI partner you've worked with — and the one still standing in year three.
+   638→
+   639→The organisations winning with AI aren't the ones with the biggest budgets. They're the ones that started with one honest, narrow, measured use case and told themselves the truth about the results. Start there. We're happy to help with the truth-telling part.`,
+   640→  },
+   641→  {
+   642→    slug: "dashboards-nobody-read-field-guide",
+   643→    title: "Dashboards nobody reads: a field guide (and how to fix them)",
+   644→    excerpt:
+   645→      "There's a dashboard in your company right now with two hundred charts and a weekly audience of zero. Here's the taxonomy — and the cure.",
+   646→    category: "Analytics",
+   647→    tags: ["bi", "dashboards", "design"],
+   648→    image: "/images/blog-3.png",
+   649→    author: "Suresh Iyer",
+   650→    authorRole: "Head of Analytics",
+   651→    readTime: 6,
+   652→    views: 558,
+   653→    createdAt: "2026-07-22T11:15:00.000Z",
+   654→    content: `There's a dashboard in your company right now with fourteen tabs, two hundred charts, and a weekly audience of zero. It was built with love, launched with an all-hands demo, and died of loneliness. This is a field guide to the species — and how to stop breeding them.
+   655→
+   656→## The taxonomy of unread dashboards
+   657→
+   658→- **The Museum.** Beautiful, interactive, visited only on tours (exec demos). Every chart is a masterpiece; none is a decision.
+   659→- **The Panic Room.** Built after an incident, it tracks everything that moved that week. Nobody remembers which red number matters.
+   660→- **The Report Refugee.** An Excel report reborn as a dashboard, inheriting all forty-seven columns and none of the insight.
+   661→- **The Kitchen Sink.** Every metric the data team could find, arranged by alphabet instead of importance.
+   662→
+   663→The common ancestor: they were built from *available data* rather than from *decisions*.
+   664→
+   665→> A dashboard's job is not to show data. It's to shorten the distance between a question and an action.
+   666→
+   667→## The redesign that works
+   668→
+   669→We redesigned a retail client's 60-chart suite into eight charts, and weekly active users went from 12% of managers to 84%. The method is embarrassingly simple:
+   670→
+   671→1. **Interview the readers.** Ask each one: "What decision did this dashboard change last month?" Silence is data.
+   672→2. **Put the headline first.** Like a newspaper front page: the one number and its direction, above the fold. Detail lives one click down.
+   673→3. **Kill the zombie charts.** If nobody can explain a chart's decision, it gets archived. Grieve briefly.
+   674→4. **Write the context in.** Target lines, seasonality notes, "why this spiked" annotations. A number without narrative is trivia.
+   675→5. **Automate the visit.** The dashboard should come to people — Monday digests, anomaly pings — not wait for pilgrims.
+   676→
+   677→## What good looks like
+   678→
+   679→A useful dashboard is opinionated. It has a point of view: *this is the number, this is what changed, this is who should care.* It answers in one glance what the old version answered in twenty clicks.
+   680→
+   681→Design your analytics the way an editorial desk designs a front page. Lead with the headline. Cut anything that doesn't inform action. Respect the reader's ten seconds, because that's all you'll ever get.
+   682→
+   683→And when someone requests "just one more chart," ask the field-guide question: which decision will it change? If there's an answer — wonderful, add it. If the answer is silence, you've just met the next exhibit for the Museum. Archive it before it breeds.`,
+   684→  },
+   685→  {
+   686→    slug: "shipping-40-ml-models-to-production",
+   687→    title: "What we learned shipping 40 ML models to production",
+   688→    excerpt:
+   689→      "Forty deployments later, the lessons that matter: evaluation is the product, drift is not an edge case, and boring is the trophy.",
+   690→    category: "MLOps",
+   691→    tags: ["mlops", "production", "lessons"],
+   692→    image: "/images/blog-4.png",
+   693→    author: "Priya Nair",
+   694→    authorRole: "Head of AI Engineering",
+   695→    readTime: 8,
+   696→    views: 913,
+   697→    createdAt: "2026-07-08T08:45:00.000Z",
+   698→    content: `Forty models into our MLOps journey, we sat down as a team and asked an uncomfortable question: what do we know now that we wish someone had told us at model number one? This post is the answer, lightly edited for print.
+   699→
+   700→## Lesson 1: The model is 10% of the system
+   701→
+   702→At model one, we budgeted eighty percent of effort for modelling. Reality: data pipelines, evaluation, serving, monitoring, and fallbacks consumed ninety percent of the work. The model is the shiny part; the system is the part that matters.
+   703→
+   704→- A mediocre model with great monitoring beats a great model with none.
+   705→- A simple model that retrains in minutes enables an iteration cadence a monster model can't.
+   706→
+   707→## Lesson 2: Evaluation is the product
+   708→
+   709→Nobody thanks you for clever architecture. Everybody thanks you for catching a regression before customers did. Every model we ship now has an evaluation suite built *before* training completes — golden datasets, regression tests, and slice metrics for the segments that matter.
+   710→
+   711→> The question is never "is the model good?" It's "will we know, before users do, when it gets worse?"
+   712→
+   713→## Lesson 3: Drift is not an edge case
+   714→
+   715→Of the forty models, twenty-two experienced meaningful data drift within six months of launch. A festival calendar shifted demand patterns; a supplier change altered sensor baselines; a new sales team entered leads differently. Drift isn't an if — it's a when, and it usually arrives politely disguised as a "weird week."
+   716→
+   717→Our answer: every model ships with a retraining trigger defined by the people who own the business metric, not by an engineer's intuition about accuracy curves.
+   718→
+   719→## Lesson 4: Champion–challenger keeps everyone honest
+   720→
+   721→Every production model now runs against one or two challengers on live shadow traffic. About a third of challengers eventually win. The discipline kills the political question "should we retrain?" and replaces it with data.
+   722→
+   723→## Lesson 5: Cost is a first-class metric
+   724→
+   725→Our most embarrassing production story: a real-time endpoint that worked beautifully and cost more per prediction than the decision it informed. Now every model card includes cost per thousand predictions, and every dashboard has an efficiency panel.
+   726→
+   727→## The checklist we use now
+   728→
+   729→1. Evaluation harness before production deployment
+   730→2. Monitoring for data drift, prediction drift, and the business metric
+   731→3. An automated retraining trigger with a human-approvable path
+   732→4. Champion–challenger (or at minimum, shadow) setup
+   733→5. Cost per prediction tracked and budgeted
+   734→6. A model card: intended use, data lineage, known failure modes
+   735→7. A rollback that takes one command, not one war room
+   736→
+   737→None of this is glamorous. All of it is why our fortieth deployment was a non-event — scheduled, monitored, and followed by... nothing. No alerts, no surprises, no drama. In production ML, boring is the trophy.`,
+   738→  },
+   739→  {
+   740→    slug: "the-quiet-revolution-in-data-engineering",
+   741→    title: "The quiet revolution in data engineering",
+   742→    excerpt:
+   743→      "While AI took the spotlight, pipelines became contracts, quality checks moved into CI, and the data lakehouse merged. A field report.",
+   744→    category: "Data Engineering",
+   745→    tags: ["data engineering", "pipelines", "architecture"],
+   746→    image: "/images/blog-5.png",
+   747→    author: "Vikram Malhotra",
+   748→    authorRole: "CTO",
+   749→    readTime: 5,
+   750→    views: 404,
+   751→    createdAt: "2026-06-19T14:00:00.000Z",
+   752→    content: `While the AI spotlight burns bright, something quieter has been happening underneath it: data engineering has been rewritten. Not with one big bang, but with a dozen small tectonic shifts that together change how every pipeline gets built. If your mental model of data engineering is still "nightly cron jobs into a warehouse," it's time for an update.
+   753→
+   754→## What changed
+   755→
+   756→- **Schemas became contracts.** Data producers now publish contracts — expected columns, types, freshness — and pipelines fail loudly when reality drifts. The wild-west CSV is being domesticated.
+   757→- **ELT ate ETL.** Load raw first, transform inside the warehouse where compute is elastic and SQL is testable. dbt-style transformation turned analytics engineering into a software discipline with version control and CI.
+   758→- **Streaming stopped being exotic.** CDC connectors made "real-time-ish" the default for operational data. The question is no longer batch versus stream; it's "how fresh does this decision actually need to be?"
+   759→- **The lakehouse merger.** Warehouse rigour and lake flexibility converged. One table format, multiple engines, fewer midnight migrations.
+   760→- **Quality checks moved left.** Data tests run in CI like unit tests. Broken data is caught at pull-request time, not in Thursday's board report.
+   761→
+   762→> The pipeline is no longer plumbing. It's a product — with users (analysts), uptime expectations, and a roadmap.
+   763→
+   764→## Why this matters more than it sounds
+   765→
+   766→Every one of these shifts compresses the distance between "an event happened" and "a decision can use it." We recently rebuilt a client's retail stack on these patterns: ingestion that once took a nine-person quarter now runs as a maintained pipeline that one engineer oversees. That's not a nice-to-have; that's the difference between a data team that drowns and one that innovates.
+   767→
+   768→## The unglamorous superpowers
+   769→
+   770→The modern data engineer's toolkit rewards patience over wizardry:
+   771→
+   772→1. Declared, versioned infrastructure (Terraform, dbt projects)
+   773→2. Tests on data, not just on code
+   774→3. Lineage and cataloguing as defaults, not afterthoughts
+   775→4. Observability — freshness, volume, distribution — on every critical table
+   776→
+   777→## The quiet conclusion
+   778→
+   779→AI gets the keynotes, but AI is downstream of this revolution: every reliable model is a tenant of reliable pipelines. The companies winning at AI in 2026 mostly won data engineering in 2023.
+   780→
+   781→So here's to the quiet revolution — the schemas enforced, the tests written, the 3 a.m. pager silenced. If your pipelines still whisper secrets in cron logs, come talk to us. We speak fluent unglamorous.`,
+   782→  },
+   783→  {
+   784→    slug: "your-cloud-bill-is-a-design-problem",
+   785→    title: "Your cloud bill is a design problem",
+   786→    excerpt:
+   787→      "The top three line items on your cloud invoice are almost never pricing problems. They're architecture decisions wearing a pricing costume.",
+   788→    category: "Cloud",
+   789→    tags: ["cloud", "finops", "cost optimisation"],
+   790→    image: "/images/blog-6.png",
+   791→    author: "Arjun Khanna",
+   792→    authorRole: "DevOps Lead",
+   793→    readTime: 6,
+   794→    views: 617,
+   795→    createdAt: "2026-06-02T10:30:00.000Z",
+   796→    content: `We've audited dozens of cloud bills, and the pattern is remarkably consistent: the top three line items are almost never pricing problems. They're design problems wearing a pricing costume. Here's how to tell the difference — and what to do about it.
+   797→
+   798→## The usual suspects
+   799→
+   800→- **The idle orchestra.** Dev and staging environments running 24/7 for code that deploys weekly. That's 168 hours of compute serving 4 hours of real use. *Fix:* ephemeral environments that spin up on pull request and die on merge. Typical saving: 60–70% of non-production spend.
+   801→- **The chatty services.** Microservices designed without thinking about where data lives, resulting in cross-AZ traffic bills larger than some compute lines. *Fix:* co-locate hot services, cache aggressively, batch the chatter.
+   802→- **The forgotten storage.** Snapshots from 2022, logs with no retention policy, five versions of the same dataset. *Fix:* lifecycle rules on day one. Storage is cheap; storage *forever* is not.
+   803→- **The oversized instance.** A 32-core machine serving 4% CPU because someone benchmarked for the Diwali traffic peak and never downsized. *Fix:* autoscaling with sane baselines and scheduled scaling for known peaks.
+   804→
+   805→> Nobody ever chose a bigger instance to be wasteful. They chose it to be *safe*. Cost problems are usually courage problems.
+   806→
+   807→## FinOps is engineering, not accounting
+   808→
+   809→The deep insight from our cost work: you cannot optimise a bill you only see monthly. Cost must be a first-class, observable signal — per service, per feature, per team — visible in the same dashboards engineers already watch.
+   810→
+   811→Three practices that pay for themselves immediately:
+   812→
+   813→1. **Tag everything, budget everything.** Every resource carries an owner and a cost centre. Every service has a monthly budget with alerts at 50%, 80%, and 100%.
+   814→2. **Make cost visible in code review.** For high-traffic paths, a comment on expected cost per request does to waste what code review does to bugs.
+   815→3. **Right-size with real data.** A week of utilisation metrics beats a quarter of guessing. Downsize, watch, downsize again.
+   816→
+   817→## The honest arithmetic
+   818→
+   819→On recent engagements, these measures cut cloud spend by 30–45% with zero performance regression — often with *better* reliability, because the same observability that finds waste also finds fragility.
+   820→
+   821→Your cloud provider's pricing page is not where the money leaks. The architecture diagram is. Treat your bill as a design review in disguise, and suddenly the invoice becomes one of the most informative documents your engineering organisation produces.`,
+   822→  },
+   823→  {
+   824→    slug: "security-isnt-a-checkbox-its-a-habit",
+   825→    title: "Security isn't a checkbox, it's a habit",
+   826→    excerpt:
+   827→      "Audits are snapshots; attackers ship continuously. Five everyday habits that separate the calm teams from the paged teams.",
+   828→    category: "Security",
+   829→    tags: ["security", "appsec", "culture"],
+   830→    image: "/images/blog-7.png",
+   831→    author: "Vikram Malhotra",
+   832→    authorRole: "CTO",
+   833→    readTime: 5,
+   834→    views: 349,
+   835→    createdAt: "2026-05-14T13:20:00.000Z",
+   836→    content: `Every security audit produces two artefacts: a findings report and a feeling. The report lists the twelve vulnerabilities. The feeling — usually unspoken — is that security is something that happens to the team twice a year, like performance reviews and fire drills. The teams that stay out of breach headlines are the ones that replace that feeling with habits.
+   837→
+   838→## Why checklists fail
+   839→
+   840→A penetration test is a snapshot. A compliance certification is a photograph of last quarter. Attackers, meanwhile, ship continuously. The gap between "we passed the audit" and "we are secure" is filled entirely by what happens on ordinary Tuesdays — the dependency update someone skipped, the S3 bucket someone opened "temporarily," the API key pasted into a chat thread.
+   841→
+   842→> Security theatre has great production values. Security habit has great outcomes.
+   843→
+   844→## The habits that matter
+   845→
+   846→From our AppSec work across dozens of codebases, five habits separate the calm teams from the paged teams:
+   847→
+   848→1. **Dependency updates as routine, not project.** Automated dependency PRs, reviewed like any other code. Most exploited vulnerabilities are months old with patches already available.
+   849→2. **Secrets never touch code or chat.** A secret manager plus a pre-commit scanner. The one time it saves you pays for the whole programme.
+   850→3. **Least privilege by default.** Every new service, bucket, and token starts with minimum permissions. Escalation is a two-line change; over-permission is a quiet catastrophe.
+   851→4. **Logging that answers questions.** Not everything logged, but the right things: auth events, permission changes, admin actions. When something odd happens, you want a trail, not a séance.
+   852→5. **Blameless security retros.** When a near-miss happens, the postmortem asks "what made this easy to do?" and fixes the system, not the human.
+   853→
+   854→## Culture beats compliance
+   855→
+   856→Here's our favourite measure of a security culture: what happens when a junior developer spots something suspicious? In healthy teams, they mention it in the open channel and get thanked. In unhealthy ones, they stay quiet — and the attacker who finds the same gap next month certainly won't.
+   857→
+   858→Compliance frameworks (SOC 2, ISO 27001, DPDP) are useful scaffolding — they force the boring basics. But they're the floor, not the ceiling. The ceiling is a team for whom "secure" is simply how the work gets done, the way clean commit messages are.
+   859→
+   860→Security isn't a checkbox, because checkboxes get ticked once. Habits get practised daily. Start with one: enable automated dependency updates this week. It's the security equivalent of flossing — unglamorous, daily, and disproportionately effective.`,
+   861→  },
+   862→  {
+   863→    slug: "llms-in-the-enterprise-signal-from-noise",
+   864→    title: "LLMs in the enterprise: separating signal from noise",
+   865→    excerpt:
+   866→      "What's actually working with enterprise LLMs, what quietly isn't, and the three questions that separate real teams from performative ones.",
+   867→    category: "AI",
+   868→    tags: ["llm", "rag", "enterprise ai"],
+   869→    image: "/images/blog-8.png",
+   870→    author: "Dr. Ananya Deshmukh",
+   871→    authorRole: "Chief Data Scientist",
+   872→    readTime: 7,
+   873→    views: 786,
+   874→    createdAt: "2026-04-27T09:00:00.000Z",
+   875→    content: `Every quarter, we brief boards and leadership teams on the state of enterprise AI. The questions are always the same, so consider this the briefing without the boardroom: what's actually working with LLMs in enterprises, what isn't, and how to tell them apart in your own organisation.
+   876→
+   877→## The signal: where LLMs reliably earn their keep
+   878→
+   879→- **Knowledge retrieval over private corpora.** RAG systems over policies, contracts, tickets, and documentation are the workhorse deployment of the era. Grounded in your own text and cited properly, they answer like a well-read colleague.
+   880→- **Structured extraction.** Turning messy documents — invoices, claims forms, resumes — into structured data. Accuracy numbers that would have been research papers three years ago are now just Tuesday.
+   881→- **Draft-with-review workflows.** First drafts of emails, reports, code, and summaries, with humans as editors. The productivity gain is real but *conditional on the editor staying engaged*.
+   882→- **Classification and routing.** Triage of tickets, messages, and leads. Boring, measurable, and quietly excellent.
+   883→
+   884→## The noise: where enthusiasm outruns evidence
+   885→
+   886→- **Fully autonomous multi-step agents** in high-stakes processes. The demos dazzle; the error compounding at step seven of nine does not forgive.
+   887→- **"AI strategy" without a use case.** Buying capability and hoping for problems. Hope is not a deployment plan.
+   888→- **Fine-tuning as a first resort.** Most teams want better *answers from their data*, which is a retrieval problem, not a parameter problem. Fine-tune for style and format; retrieve for facts.
+   889→- **Numbers without denominators.** "Our pilot saved 400 hours" — of whose time, verified how, against what baseline? If the evaluation isn't defined before the pilot, the result is marketing.
+   890→
+   891→> The difference between a demo and a system is what happens on the inputs nobody showed you.
+   892→
+   893→## The evaluation gap
+   894→
+   895→The single biggest predictor of enterprise LLM success is not model choice — it's whether the team built an honest evaluation harness. Golden question sets, adversarial probes, slice analysis by query type, human review loops. In our deployments, evaluations catch the majority of regressions that would otherwise surface as user complaints.
+   896→
+   897→Ask any vendor or internal team three questions:
+   898→
+   899→1. What is your evaluation set, and who maintains it?
+   900→2. What does the system do when it doesn't know?
+   901→3. Show me the worst outputs from last month, and what changed because of them.
+   902→
+   903→Good teams answer instantly. Performative teams change the subject.
+   904→
+   905→## Our working recommendation
+   906→
+   907→Start with retrieval over your own knowledge. Define evaluations before deployment. Keep humans in the loop on anything customer-facing. Measure everything — accuracy, latency, cost per query, escalation rate. Expand only what survives contact with real users.
+   908→
+   909→The signal is real; it's just quieter than the noise. The organisations benefiting are the ones treating LLMs as *systems to be engineered* rather than magic to be summoned. Be boring. Be measured. Be early enough that the compounding starts now.`,
+   910→  },
+   911→  {
+   912→    slug: "from-notebooks-to-production-messy-middle",
+   913→    title: "From notebooks to production: surviving the messy middle",
+   914→    excerpt:
+   915→      "The journey from 'it works in my notebook' to 'it runs the business' passes through a messy middle nobody photographs. Here's the map.",
+   916→    category: "MLOps",
+   917→    tags: ["ml engineering", "notebooks", "pipelines"],
+   918→    image: "/images/blog-9.png",
+   919→    author: "Priya Nair",
+   920→    authorRole: "Head of AI Engineering",
+   921→    readTime: 6,
+   922→    views: 523,
+   923→    createdAt: "2026-04-10T15:45:00.000Z",
+   924→    content: `Every data scientist knows the notebook. It's where insights are born, hairs are pulled, and — if we're honest — where a little too much of the work goes to die. The journey from "it works in my notebook" to "it runs the business" passes through a messy middle that nobody photographs. Here's the map.
+   925→
+   926→## Why notebooks lie
+   927→
+   928→Notebooks are wonderful for exploration and terrible for operations, for structural reasons:
+   929→
+   930→- **Hidden state.** Cells run in an order history will never reveal. That "works on my machine" is actually "works on my machine, in this order, with these cached variables."
+   931→- **The data assumption.** Notebooks assume the data as it existed at the moment of exploration. Production data arrives late, malformed, and occasionally hostile.
+   932→- **No contract.** Nothing enforces input schema, output shape, or runtime limits. Production is made entirely of enforced contracts.
+   933→
+   934→> A notebook is a conversation with your data. Production is a marriage. Different commitments entirely.
+   935→
+   936→## The migration path that works
+   937→
+   938→We've walked this road dozens of times, and the reliable route has five steps:
+   939→
+   940→1. **Freeze the logic.** Refactor the notebook into pure functions — inputs in, outputs out, no hidden state. If a function needs cell 23's variable, that's a parameter now.
+   941→2. **Write the contracts.** Define input and output schemas explicitly. Validate at every boundary. Malformed data should fail loudly at the door, not corrupt silently in the living room.
+   942→3. **Test with real data shapes.** Unit tests on synthetic data catch typos; only tests against real (anonymised) data catch the truth — nulls where angels fear to tread, Unicode surprises, timestamps in three timezones.
+   943→4. **Containerise and schedule.** The pipeline gets a runtime with dependencies pinned, resources bounded, and retries with backoff. The notebook's operating system — you — is deprecated.
+   944→5. **Observe from day one.** Runtime, data volume, output distribution, business metric. Drift alerts before stakeholders ask why the numbers look odd.
+   945→
+   946→## Keep the notebook, change its job
+   947→
+   948→None of this means notebooks are the enemy. In healthy teams, notebooks remain the laboratory: exploration, ad-hoc analysis, incident forensics. What changes is that anything which proves valuable *graduates* — through the five steps — into a monitored, versioned pipeline.
+   949→
+   950→The messy middle is where most analytical value quietly evaporates. Teams that systematise the crossing — templates, checklists, paved roads — compound their wins. Teams that don't keep rediscovering their own insights every six months, like a kind of data-science amnesia.
+   951→
+   952→Respect the notebook. Then help its best ideas grow up.`,
+   953→  },
+   954→  {
+   955→    slug: "your-warehouse-needs-a-semantic-layer",
+   956→    title: "Why your data warehouse needs a semantic layer (before your BI tool does)",
+   957→    excerpt:
+   958→      "Three teams, three definitions of revenue, one very long meeting. The unglamorous fix is a semantic layer — and you can start in two weeks.",
+   959→    category: "Data Engineering",
+   960→    tags: ["semantic layer", "metrics", "governance"],
+   961→    image: "/images/blog-10.png",
+   962→    author: "Dr. Ananya Deshmukh",
+   963→    authorRole: "Chief Data Scientist",
+   964→    readTime: 4,
+   965→    views: 288,
+   966→    createdAt: "2026-03-24T10:15:00.000Z",
+   967→    content: `Here's a scene replayed in companies everywhere: the CFO asks for revenue. Marketing exports one number from the BI tool, finance pulls another from the warehouse, and the sales dashboard shows a third. All three are correct — by their own definitions. The meeting becomes an archaeology expedition into SQL instead of a decision. The missing piece has an unglamorous name: a semantic layer.
+   968→
+   969→## What it actually is
+   970→
+   971→A semantic layer is a single, governed definition of your business metrics — revenue, active customer, churn, margin — expressed once and reused everywhere: dashboards, ad-hoc queries, ML features, embedded analytics. One definition of revenue. One owner. One place to change it when the business definition evolves.
+   972→
+   973→Think of it as the constitution of your metrics: short, central, and consulted constantly.
+   974→
+   975→> Without a semantic layer, every analyst is a constitutional lawyer arguing from their own private SQL.
+   976→
+   977→## Why it comes before the BI tool
+   978→
+   979→Companies often buy BI licences hoping the tool will impose order. But BI tools are presentation layers — they happily display whatever definition each dashboard author wrote. The disagreement isn't in the charts; it's underneath them. Building the semantic layer first gives every future tool, dashboard, and model the same source of truth.
+   980→
+   981→## What you get
+   982→
+   983→- **One number, everywhere.** The CFO, the marketing dashboard, and the churn model all cite the same revenue. Meetings shorten by magic.
+   984→- **Definitions with owners.** Each metric has a name, formula, owner, and documented caveats. When the definition changes, there's a commit — with a reason — not a rumour.
+   985→- **Faster analysts.** Instead of re-deriving "active customer" for the seventh time, analysts select it. Onboarding a new analyst drops from months to weeks.
+   986→- **Trustworthy ML features.** Models trained on governed metrics inherit the governance. Feature definitions that match reporting definitions prevent a whole genre of production surprises.
+   987→
+   988→## How to start without a project plan
+   989→
+   990→Begin with the five metrics your leadership team argues about most. Define them in a semantic modelling tool (dbt metrics, Cube, or your warehouse's native layer), socialise the definitions, and migrate one dashboard at a time. Total elapsed time for round one: about two weeks.
+   991→
+   992→Governance sounds like bureaucracy and feels like relief. The first time an executive asks "which number is right?" and the whole room answers "that one" — you'll wonder why anyone enjoyed the archaeology.`,
+   993→  },
+   994→];
+   995→
+   996→// ── Case studies ──────────────────────────────────────────────────────────────
+   997→
+   998→export const caseStudies: CaseStudySeed[] = [
+   999→  {
+  1000→    slug: "retail-intelligence-revamp",
+  1001→    client: "Vastra Retail",
+  1002→    title: "Demand intelligence that restocks itself",
+  1003→    industry: "Retail",
+  1004→    challenge: `Vastra Retail's 120 stores ran on gut feel and a spreadsheet named FINAL_v9. Forecasting was a weekly ritual of manual overrides, overstocks of last season's kurtas sat in warehouses, and bestsellers stockouted in the top-performing stores — during festival season, no less. The merchandising team was drowning, and every stockout was a customer walking straight to a competitor.
+  1005→
+  1006→The core problem was structural: point-of-sale data lived in one system, e-commerce in another, and the warehouse in a third — none of them talking. Decisions needed a week of data archaeology, by which time the season had already moved on.`,
+  1007→    solution: `We built a unified retail data platform — ingesting POS, e-commerce, inventory, and weather signals — and layered demand-forecasting models on top, tuned for Indian retail's festival calendar. The forecast engine produces store-and-SKU-level predictions refreshed daily, feeding a replenishment recommender that drafts purchase orders for buyer approval.
+  1008→
+  1009→We deliberately kept buyers in the loop: the system recommends, humans approve with one click, and every override feeds back into the model. Six months in, the models had earned a trust the spreadsheet never could — override rates fell from 40% to under 10%.`,
+  1010→    results: [
+  1011→      "Forecast accuracy improved from 68% to 91% at store-SKU level",
+  1012→      "Stockouts during festival season cut by two-thirds",
+  1013→      "Carrying cost reduced by ₹4.2 crore annually",
+  1014→      "Buyer decision cycle compressed from 7 days to same-day",
+  1015→    ],
+  1016→    metrics: [
+  1017→      { label: "Revenue uplift", value: "+38%" },
+  1018→      { label: "Weeks to launch", value: "6" },
+  1019→      { label: "Forecast accuracy", value: "91%" },
+  1020→    ],
+  1021→    image: "/images/case-1.png",
+  1022→    year: "2025",
+  1023→    featured: true,
+  1024→    services: ["data-analytics", "machine-learning", "data-science"],
+  1025→  },
+  1026→  {
+  1027→    slug: "hospital-forecast-care",
+  1028→    client: "MediTrust Hospitals",
+  1029→    title: "Predicting patient flow for a 400-bed hospital",
+  1030→    industry: "Healthcare",
+  1031→    challenge: `MediTrust's flagship 400-bed hospital ran at 96% occupancy — great for the business case, brutal for operations. Elective surgeries got bumped, ER wait times crept up, and staffing decisions were made on averages that fit no actual day. The hospital needed to predict demand rather than merely record it.
+  1032→
+  1033→The data existed — ADT feeds, scheduling systems, historical admission logs — but it sat in silos with no shared time frame. Nursing rosters were planned weeks in advance against demand that varied by 40% week to week.`,
+  1034→    solution: `We built a patient-flow forecasting platform that predicts admissions, discharges, and bed occupancy fourteen days ahead at department granularity. The models blend seasonal patterns, scheduled procedures, epidemic signals, and local events — and feed a staffing recommendation engine that drafts rosters for nursing supervisors to review.
+  1035→
+  1036→Deployment was clinician-first by design: dashboards live in the duty manager's office, predictions arrive with confidence ranges, and every recommendation explains itself. Adoption was never mandated — it spread hospital by hospital because the night shift told the day shift about it.`,
+  1037→    results: [
+  1038→      "Bed occupancy optimised to 88% with fewer elective bumps",
+  1039→      "ER wait times down 23% at peak hours",
+  1040→      "Agency nursing spend reduced by ₹1.1 crore a year",
+  1041→      "Adopted across 3 hospitals in the group within 8 months",
+  1042→    ],
+  1043→    metrics: [
+  1044→      { label: "Prediction accuracy", value: "94%" },
+  1045→      { label: "ER wait time", value: "-23%" },
+  1046→      { label: "Annual savings", value: "₹1.1Cr" },
+  1047→    ],
+  1048→    image: "/images/case-2.png",
+  1049→    year: "2025",
+  1050→    featured: true,
+  1051→    services: ["data-science", "ai-development", "data-analytics"],
+  1052→  },
+  1053→  {
+  1054→    slug: "fintech-fraud-shield",
+  1055→    client: "PayNorth",
+  1056→    title: "A fraud shield that scores in 40 milliseconds",
+  1057→    industry: "Fintech",
+  1058→    challenge: `PayNorth, a fast-growing payments platform processing two million transactions a day, was losing the cat-and-mouse game against fraud rings. Their rules engine caught the obvious stuff, but sophisticated attacks sailed through — chargebacks were climbing 8% month over month, and mounting regulatory heat made every incident a reportable event.
+  1059→
+  1060→Worse, every new rule took three weeks of committee review, by which time the fraud pattern had already retired. They needed millisecond scoring that learns, wrapped in model governance their auditors and the regulator could love.`,
+  1061→    solution: `We built a real-time fraud-scoring service: gradient-boosted models enriched with graph features — device rings, beneficiary networks, velocity patterns — scoring every transaction in under 40 milliseconds at peak load. A champion–challenger framework tests new models against live traffic in shadow mode before promotion, and every decline ships with an explainability report for the compliance team.
+  1062→
+  1063→The system was designed for the audit trail from day one: full decision logging, model cards, drift monitoring, and a quarterly model-risk review pack that their regulator's inspection team described — verbatim — as "unusually thorough."`,
+  1064→    results: [
+  1065→      "Fraud losses down 71% within four months",
+  1066→      "False-positive rate halved, saving 18,000 good transactions monthly",
+  1067→      "Scoring latency p99: 38ms at 2M transactions per day",
+  1068→      "Zero regulatory findings across two RBI inspections",
+  1069→    ],
+  1070→    metrics: [
+  1071→      { label: "Fraud loss reduction", value: "-71%" },
+  1072→      { label: "Scoring latency", value: "38ms" },
+  1073→      { label: "Uptime", value: "99.99%" },
+  1074→    ],
+  1075→    image: "/images/case-3.png",
+  1076→    year: "2024",
+  1077→    featured: true,
+  1078→    services: ["machine-learning", "ai-development", "cloud-devops"],
+  1079→  },
+  1080→  {
+  1081→    slug: "predictive-factory-maintenance",
+  1082→    client: "IronCast Motors",
+  1083→    title: "Machines that schedule their own maintenance",
+  1084→    industry: "Manufacturing",
+  1085→    challenge: `IronCast Motors' foundry line lost nineteen hours a month to unplanned downtime — each hour costing ₹6 lakh. Maintenance was calendar-based, which meant parts replaced too early (waste) and bearings failing too late (catastrophe). Their maintenance chief had a decade of intuition and a shoebox of paper logs.
+  1086→
+  1087→The plant's CNC machines and conveyors produced sensor data that flowed straight into a historian nobody queried. The knowledge to predict failures existed in the data and in veterans' heads — it just needed to be united.`,
+  1088→    solution: `We connected the historian, added IIoT sensors on six legacy machines, and built anomaly-detection models per asset class — thermal, vibration, and current signatures learned from three years of history plus eleven labelled failures. Alerts route directly into their CMMS as prioritised work orders with failure-mode hypotheses attached.
+  1089→
+  1090→The rollout was deliberately old-school: a maintenance engineer sat with our team for the first six weeks, tagging every alert true or false. That feedback loop took alert precision from 61% to 93% and gave the night shift what they now call "the apprentice who never sleeps."`,
+  1091→    results: [
+  1092→      "Unplanned downtime reduced 37% in year one",
+  1093→      "Zero catastrophic bearing failures in 14 months",
+  1094→      "Spare-parts inventory rationalised by ₹80 lakh",
+  1095→      "Maintenance planning effort cut from 3 days to 2 hours weekly",
+  1096→    ],
+  1097→    metrics: [
+  1098→      { label: "Downtime reduction", value: "-37%" },
+  1099→      { label: "Alert precision", value: "93%" },
+  1100→      { label: "Payback period", value: "5 months" },
+  1101→    ],
+  1102→    image: "/images/case-4.png",
+  1103→    year: "2024",
+  1104→    featured: false,
+  1105→    services: ["machine-learning", "data-analytics", "cloud-devops"],
+  1106→  },
+  1107→  {
+  1108→    slug: "personalised-commerce-engine",
+  1109→    client: "UrbanKart",
+  1110→    title: "A recommendation engine that respects the customer",
+  1111→    industry: "E-commerce",
+  1112→    challenge: `UrbanKart's marketplace drew four million monthly visitors and served them recommendations from an off-the-shelf module that showed everyone roughly the same bestsellers. Conversion sat at 1.1%, email click-through at 3%, and the merchandising team suspected — correctly — that personalisation done badly is worse than none at all.
+  1113→
+  1114→Their clickstream data was rich but fragmented across web, app, and push channels, with no unified customer identity. Every vendor proposal they'd seen wanted twelve months and a data-migration apocalypse.`,
+  1115→    solution: `We built a customer data platform with identity resolution across devices, then a hybrid recommendation engine — collaborative filtering plus content-based models, with merchandising rules (margin, stock, brand exclusions) applied as a final layer. One API serves recommendations to web, app, email, and push.
+  1116→
+  1117→Crucially, we made personalisation legible: every recommendation slot explains itself in the CMS, so merchandisers can see *why* a product surfaced and tune rules without filing engineering tickets. Fashion-category conversions moved first; the rest followed within a quarter.`,
+  1118→    results: [
+  1119→      "Conversion rate lifted from 1.1% to 1.9%",
+  1120→      "Email revenue up 41% on personalised campaigns",
+  1121→      "Average order value up 17%",
+  1122→      "Merchandising rule changes fully self-serve",
+  1123→    ],
+  1124→    metrics: [
+  1125→      { label: "Conversion", value: "+73%" },
+  1126→      { label: "Email revenue", value: "+41%" },
+  1127→      { label: "Average order value", value: "+17%" },
+  1128→    ],
+  1129→    image: "/images/case-5.png",
+  1130→    year: "2023",
+  1131→    featured: false,
+  1132→    services: ["ai-development", "data-analytics", "web-development"],
+  1133→  },
+  1134→  {
+  1135→    slug: "smart-city-data-mesh",
+  1136→    client: "NagarNigam City",
+  1137→    title: "A data mesh for a city of two million",
+  1138→    industry: "Government",
+  1139→    challenge: `The municipal corporation of a two-million-person city ran fourteen departments on fourteen systems that had never been introduced to each other. Property tax records didn't match the GIS maps, water-billing data contradicted the census, and every inter-departmental question became a three-month file movement. Citizens paid the waiting cost.
+  1140→
+  1141→Leadership wanted a "smart city command centre" — but the honest prerequisite was plumbing: shared identifiers, reconciled records, and a platform departments could trust more than their own silos.`,
+  1142→    solution: `We built a federated data mesh: departmental data stays in departmental systems, with governed data products published to a central catalogue. A property identity service reconciles records across tax, utilities, and GIS layers, and a permissions model ensures each department sees exactly what policy allows — citizen privacy was a design constraint, not a compliance afterthought.
+  1143→
+  1144→The command centre came last, on top of the mesh: dashboards for property-tax leakage, water-supply zones, and grievance heat maps. The tax department found ₹63 crore of leakage in the first six months — which made political allies of the sceptics.`,
+  1145→    results: [
+  1146→      "₹63 crore of property-tax leakage identified and recovered",
+  1147→      "Inter-departmental data requests: 3 months to same-day",
+  1148→      "Grievance resolution time halved via zone heat-mapping",
+  1149→      "14 departments publishing governed data products",
+  1150→    ],
+  1151→    metrics: [
+  1152→      { label: "Tax recovered", value: "₹63Cr" },
+  1153→      { label: "Data request time", value: "Same-day" },
+  1154→      { label: "Departments onboarded", value: "14" },
+  1155→    ],
+  1156→    image: "/images/case-6.png",
+  1157→    year: "2023",
+  1158→    featured: false,
+  1159→    services: ["data-analytics", "cloud-devops", "ai-development"],
+  1160→  },
+  1161→];
+  1162→
+  1163→// ── Jobs ──────────────────────────────────────────────────────────────────────
+  1164→
+  1165→export const jobs: JobSeed[] = [
+  1166→  {
+  1167→    slug: "senior-data-engineer",
+  1168→    title: "Senior Data Engineer",
+  1169→    department: "Engineering",
+  1170→    location: "Noida (Hybrid)",
+  1171→    type: "Full-time",
+  1172→    experience: "5-8 years",
+  1173→    description: `You'll design and build the pipelines and platforms everything else at LFRDCA stands on — lakehouse architectures, CDC ingestion, data contracts, and quality gates for clients in retail, finance, and healthcare. This is a hands-on senior role: you'll own pipelines end-to-end, from whiteboard sketch to a production that stays quiet at 3 a.m.
+  1174→
+  1175→You'll work directly with our Chief Data Scientist and CTO, mentor engineers who are hungry to learn, and have genuine influence on stack decisions. We're a craft culture — code review is thoughtful, prototypes are welcome, and "it works" is the beginning of the conversation, not the end.`,
+  1176→    requirements: [
+  1177→      "5+ years building production data pipelines (batch and streaming)",
+  1178→      "Strong SQL and Python; experience with dbt, Airflow, or Dagster",
+  1179→      "Hands-on with a major warehouse (Snowflake, BigQuery, or Redshift)",
+  1180→      "Data-modelling chops — dimensional and one-big-table both welcome",
+  1181→      "CI/CD and infrastructure-as-code experience (Terraform a plus)",
+  1182→      "Clear written communication — we document like editors",
+  1183→    ],
+  1184→    active: true,
+  1185→    createdAt: "2026-08-12T09:00:00.000Z",
+  1186→  },
+  1187→  {
+  1188→    slug: "ml-engineer",
+  1189→    title: "ML Engineer",
+  1190→    department: "AI",
+  1191→    location: "Noida (Hybrid)",
+  1192→    type: "Full-time",
+  1193→    experience: "3-6 years",
+  1194→    description: `You'll take models from notebook to production across our client portfolio — training pipelines, feature stores, real-time serving, drift monitoring — with an evaluation-first mindset. Our ML systems run fraud scoring at 38ms p99 and hospital forecasting at 94% accuracy; you'll help build the next ones.
+  1195→
+  1196→Expect deep work on RAG systems, ranking models, and classic ML on tabular data — often in the same week. You'll pair with data scientists who think in baselines first, and with DevOps engineers who treat 3 a.m. pages as personal insults.`,
+  1197→    requirements: [
+  1198→      "3+ years shipping ML systems to production (not just notebooks)",
+  1199→      "Python fluency; strong grasp of scikit-learn, XGBoost, or PyTorch",
+  1200→      "Experience with model serving (FastAPI, Triton, or Vertex/SageMaker)",
+  1201→      "Familiarity with MLOps tooling — MLflow, feature stores, pipelines",
+  1202→      "Comfort with evaluation design: golden sets, slice metrics, drift tests",
+  1203→      "Bonus: LLM/RAG production experience",
+  1204→    ],
+  1205→    active: true,
+  1206→    createdAt: "2026-08-01T09:00:00.000Z",
+  1207→  },
+  1208→  {
+  1209→    slug: "data-scientist",
+  1210→    title: "Data Scientist",
+  1211→    department: "Data",
+  1212→    location: "Remote (India)",
+  1213→    type: "Full-time",
+  1214→    experience: "2-5 years",
+  1215→    description: `You'll run the experiments behind our case studies — forecasting, causal inference, segmentation, and the occasional model that becomes a product. We're looking for scientists who ask "what decision does this change?" before "which algorithm should I use?"
+  1216→
+  1217→You'll present findings to client executives, design A/B tests with real stakes, and work with some of the messiest, most interesting data in Indian industry. Rigour is the brand; humility about uncertainty is the culture.`,
+  1218→    requirements: [
+  1219→      "2+ years in applied data science (industry or research)",
+  1220→      "Statistics you can defend under questioning — hypothesis testing, regression, causal basics",
+  1221→      "Python data stack (pandas, statsmodels, scikit-learn)",
+  1222→      "Experiment / A-B test design experience",
+  1223→      "Ability to write findings in clear business English",
+  1224→      "Curiosity about domains — retail, health, finance — beyond the dataset",
+  1225→    ],
+  1226→    active: true,
+  1227→    createdAt: "2026-07-20T09:00:00.000Z",
+  1228→  },
+  1229→  {
+  1230→    slug: "ai-solutions-architect",
+  1231→    title: "AI Solutions Architect",
+  1232→    department: "AI",
+  1233→    location: "Noida (Hybrid)",
+  1234→    type: "Full-time",
+  1235→    experience: "6-10 years",
+  1236→    description: `You'll own the architecture of our largest AI engagements — RAG platforms, agent systems, and ML platforms for enterprise clients — from discovery workshops through production hardening. This is a player-coach role: whiteboard in the morning, pull request in the afternoon, steering committee on Friday.
+  1237→
+  1238→You'll be the technical conscience of the engagement: pushing back on hype, defending evaluation budgets, and designing systems that are still elegant in year three. Our architects carry real authority and real accountability — and present to client CTOs regularly.`,
+  1239→    requirements: [
+  1240→      "6+ years in data/AI with 3+ architecting production systems",
+  1241→      "Deep LLM/RAG system experience: retrieval, guardrails, evals, cost control",
+  1242→      "Cloud architecture certification or equivalent scars (AWS/GCP/Azure)",
+  1243→      "Strong client-facing communication — workshops to boardrooms",
+  1244→      "Strong opinions, loosely held — and documented either way",
+  1245→      "Experience in data-privacy / compliance-heavy environments a plus",
+  1246→    ],
+  1247→    active: true,
+  1248→    createdAt: "2026-07-05T09:00:00.000Z",
+  1249→  },
+  1250→  {
+  1251→    slug: "devops-engineer",
+  1252→    title: "DevOps Engineer",
+  1253→    department: "Engineering",
+  1254→    location: "Remote (India)",
+  1255→    type: "Full-time",
+  1256→    experience: "3-6 years",
+  1257→    description: `You'll build the paved roads our engineers deploy on: Kubernetes platforms, CI/CD with real quality gates, observability that pages only when a human is needed, and cloud cost controls that keep invoices polite. We deploy on Fridays because the pipeline has earned it — you'll keep earning it.
+  1258→
+  1259→Our infrastructure is Terraform-first, our culture blameless, and our on-call quiet by design. You'll work across client environments (with all their quirks) and our own platform — automation debt is treated as technical debt, not a personality trait.`,
+  1260→    requirements: [
+  1261→      "3+ years running production infrastructure on AWS/GCP/Azure",
+  1262→      "Kubernetes in anger — deployments, autoscaling, ingress, secrets",
+  1263→      "Terraform or Pulumi discipline; GitOps experience (ArgoCD/Flux)",
+  1264→      "Observability stack fluency (Prometheus/Grafana/OpenTelemetry)",
+  1265→      "Incident response and blameless postmortem experience",
+  1266→      "FinOps instincts — cost dashboards, right-sizing, lifecycle rules",
+  1267→    ],
+  1268→    active: true,
+  1269→    createdAt: "2026-06-24T09:00:00.000Z",
+  1270→  },
+  1271→  {
+  1272→    slug: "fullstack-developer-nextjs",
+  1273→    title: "Full-Stack Developer (Next.js)",
+  1274→    department: "Engineering",
+  1275→    location: "Noida (Hybrid)",
+  1276→    type: "Full-time",
+  1277→    experience: "2-5 years",
+  1278→    description: `You'll build the web products our clients' customers actually touch — dashboards, portals, and marketing sites with editorial polish — in Next.js, TypeScript, and Tailwind. We care about craft: Lighthouse scores, accessibility, and the 2% of detail most teams skip.
+  1279→
+  1280→You'll ship to production weekly, own features end-to-end (API route to animation timing), and get obsessive code review from people who genuinely enjoy giving it. Our design system is a point of pride — you'll help it evolve.`,
+  1281→    requirements: [
+  1282→      "2+ years with React and modern TypeScript",
+  1283→      "Next.js App Router experience (server components, route handlers)",
+  1284→      "Comfort across the stack — REST APIs, auth, databases (Prisma a plus)",
+  1285→      "CSS craft: Tailwind, responsive design, accessibility basics",
+  1286→      "Testing habits — unit and E2E (Playwright/Vitest welcome)",
+  1287→      "Design sensibility: you notice misaligned pixels and it bothers you",
+  1288→    ],
+  1289→    active: true,
+  1290→    createdAt: "2026-06-10T09:00:00.000Z",
+  1291→  },
+  1292→  {
+  1293→    slug: "analytics-consultant",
+  1294→    title: "Analytics Consultant",
+  1295→    department: "Consulting",
+  1296→    location: "Noida (Hybrid)",
+  1297→    type: "Full-time",
+  1298→    experience: "4-7 years",
+  1299→    description: `You'll sit between client executives and our engineering teams — translating business pain into analytics roadmaps, and model output into board-ready narrative. Our consultants run discovery workshops, define metric frameworks, and stay through adoption to make sure dashboards get used, not just launched.
+  1300→
+  1301→This is a craft role for someone who loves both spreadsheets and sentences: you'll write metric definitions sharper than the SQL beneath them and findings clearer than the notebook above them. Expect retail floor visits and hospital duty-manager interviews — context is the job.`,
+  1302→    requirements: [
+  1303→      "4+ years in analytics consulting or analytics leadership",
+  1304→      "Fluent SQL and dashboard literacy (Looker/Power BI/Metabase)",
+  1305→      "Metric/KPI framework design experience",
+  1306→      "Executive communication — present to a CFO without a deck full of jargon",
+  1307→      "Facilitation skills for discovery workshops",
+  1308→      "Comfort with Indian enterprise realities: messy data, real deadlines",
+  1309→    ],
+  1310→    active: true,
+  1311→    createdAt: "2026-05-28T09:00:00.000Z",
+  1312→  },
+  1313→  {
+  1314→    slug: "data-analyst-intern",
+  1315→    title: "Data Analyst Intern",
+  1316→    department: "Data",
+  1317→    location: "Noida (Hybrid)",
+  1318→    type: "Internship",
+  1319→    experience: "0-1 years",
+  1320→    description: `A six-month paid internship where you'll do real work on real client data — not a shadowing programme. Interns at LFRDCA have built production dashboards in week three and presented to clients in month two. You'll be mentored by our Head of Analytics and treated as a junior colleague, because you will be one.
+  1321→
+  1322→Expect SQL you didn't know you had in you, dashboards with your name on them, and a hiring conversation at the end if the work is strong (it usually is — we choose carefully). We take two interns a quarter.`,
+  1323→    requirements: [
+  1324→      "Final-year student or recent graduate (any discipline with quantitative appetite)",
+  1325→      "SQL basics — joins, group-bys, and the courage to look up the rest",
+  1326→      "Excel/Sheets fluency that goes beyond SUM",
+  1327→      "Any dashboarding exposure (a college project counts)",
+  1328→      "Writing clarity — you can explain a finding to a non-technical friend",
+  1329→      "Curiosity, coachability, and questions — lots of them",
+  1330→    ],
+  1331→    active: true,
+  1332→    createdAt: "2026-08-20T09:00:00.000Z",
+  1333→  },
+  1334→];
+  1335→
+  1336→// ── Testimonials ──────────────────────────────────────────────────────────────
+  1337→
+  1338→export const testimonials: TestimonialSeed[] = [
+  1339→  {
+  1340→    name: "Rohan Mehta",
+  1341→    role: "VP Operations",
+  1342→    company: "Vastra Retail",
+  1343→    content:
+  1344→      "LFRDCA's demand forecasting paid for itself before the second festival season — our buyers now trust the model more than the old spreadsheet, and honestly, so do I. They speak retail, not jargon, and every fortnightly demo felt like watching our own team at work.",
+  1345→    avatar: "/images/team-2.png",
+  1346→    rating: 5,
+  1347→  },
+  1348→  {
+  1349→    name: "Dr. Kavitha Menon",
+  1350→    role: "Chief Medical Officer",
+  1351→    company: "MediTrust Hospitals",
+  1352→    content:
+  1353→      "The patient-flow predictions are eerily good — we plan rosters now instead of improvising them. What impressed me most is how their team listened to our nurses before writing a single line of code.",
+  1354→    avatar: "/images/team-3.png",
+  1355→    rating: 5,
+  1356→  },
+  1357→  {
+  1358→    name: "Aditya Raghavan",
+  1359→    role: "CTO",
+  1360→    company: "PayNorth",
+  1361→    content:
+  1362→      "Forty milliseconds a decision, two clean RBI inspections, and fraud losses down 71% — the numbers speak. But the reason I keep recommending LFRDCA is their model governance: our auditors actually complimented the documentation.",
+  1363→    avatar: "/images/team-4.png",
+  1364→    rating: 5,
+  1365→  },
+  1366→  {
+  1367→    name: "Sneha Kulkarni",
+  1368→    role: "Head of Digital",
+  1369→    company: "UrbanKart",
+  1370→    content:
+  1371→      "They rebuilt our recommendation engine in twelve weeks after another vendor quoted twelve months. Conversion is up 73%, and our merchandising team can finally tune things without filing engineering tickets.",
+  1372→    avatar: "/images/team-5.png",
+  1373→    rating: 5,
+  1374→  },
+  1375→  {
+  1376→    name: "Jaspal Singh",
+  1377→    role: "Plant Director",
+  1378→    company: "IronCast Motors",
+  1379→    content:
+  1380→      "Fourteen months without a single catastrophic bearing failure — the system has become the apprentice who never sleeps. The only reason this isn't five stars is I'm saving it for when they finish the second line.",
+  1381→    avatar: "/images/team-6.png",
+  1382→    rating: 4,
+  1383→  },
+  1384→  {
+  1385→    name: "Meera Krishnan",
+  1386→    role: "Founder",
+  1387→    company: "Craftly",
+  1388→    content:
+  1389→      "As a founder, I'd been burned by 'AI consultants' before. LFRDCA was the first team that told me what NOT to build — that honesty saved me lakhs, and the assistant they did build tripled our support efficiency.",
+  1390→    avatar: "/images/team-7.png",
+  1391→    rating: 5,
+  1392→  },
+  1393→];
+  1394→
+  1395→// ── Events ────────────────────────────────────────────────────────────────────
+  1396→
+  1397→export const events: EventItemSeed[] = [
+  1398→  {
+  1399→    title: "Data & Donuts — Noida Meetup",
+  1400→    date: "2026-09-19T10:30:00.000Z",
+  1401→    location: "LFRDCA Office, Noida Sector 62",
+  1402→    type: "Meetup",
+  1403→    description:
+  1404→      "Our monthly-ish meetup at the Noida office: two short talks, one live teardown of a real production pipeline, and honestly excellent donuts. The September edition covers 'dbt testing patterns we actually use.' Free, but seats go fast.",
+  1405→    image: "/images/event-1.png",
+  1406→  },
+  1407→  {
+  1408→    title: "AI in Healthcare Workshop",
+  1409→    date: "2026-10-10T05:00:00.000Z",
+  1410→    location: "India Habitat Centre, Delhi",
+  1411→    type: "Workshop",
+  1412→    description:
+  1413→      "A hands-on half-day workshop for hospital IT and clinical operations teams: forecasting patient flow, extracting structure from clinical documents, and what regulators actually expect from AI in care settings. Limited to 40 participants.",
+  1414→    image: "/images/event-2.png",
+  1415→  },
+  1416→  {
+  1417→    title: "LFRDCA at Big Data Summit 2025",
+  1418→    date: "2025-11-14T04:30:00.000Z",
+  1419→    location: "Delhi",
+  1420→    type: "Conference",
+  1421→    description:
+  1422→      "We presented 'The Quiet Revolution in Data Engineering' on the main stage and ran a clinic where 60+ attendees had their cloud bills diagnosed live. Slides and the bill-audit checklist are on our insights page.",
+  1423→    image: "/images/event-3.png",
+  1424→  },
+  1425→  {
+  1426→    title: "Campus Connect: Data Careers",
+  1427→    date: "2025-08-22T11:00:00.000Z",
+  1428→    location: "Virtual",
+  1429→    type: "Webinar",
+  1430→    description:
+  1431→      "An honest hour with our Head of People and two analysts-turned-data-scientists on what a data career actually looks like in year one — salaries, skills, and the questions worth asking in interviews. Recording available on request.",
+  1432→    image: "/images/office-hero.png",
+  1433→  },
+  1434→];
+  1435→
+  1436→// ── Whitepapers ───────────────────────────────────────────────────────────────
+  1437→
+  1438→export const whitepapers: WhitepaperSeed[] = [
+  1439→  {
+  1440→    slug: "cmos-guide-first-party-data",
+  1441→    title: "The CMO's Guide to First-Party Data",
+  1442→    description:
+  1443→      "A practical playbook for marketing leaders staring down the cookie-pocalypse: auditing the first-party data you already own, building consent-led collection, and turning it into measurable media efficiency. Includes 12 metric templates.",
+  1444→    pages: 28,
+  1445→    image: "/images/insight-1.png",
+  1446→    category: "Marketing Analytics",
+  1447→  },
+  1448→  {
+  1449→    slug: "predictive-maintenance-playbook",
+  1450→    title: "The Predictive Maintenance Playbook",
+  1451→    description:
+  1452→      "Everything we learned connecting shop floors to ML: sensor strategy, failure-mode libraries, alert precision tuning, and the economics of downtime. Written for plant managers as much as data scientists.",
+  1453→    pages: 36,
+  1454→    image: "/images/insight-2.png",
+  1455→    category: "Industrial AI",
+  1456→  },
+  1457→  {
+  1458→    slug: "rag-to-production",
+  1459→    title: "RAG to Production: An Engineering Field Guide",
+  1460→    description:
+  1461→      "The complete anatomy of retrieval-augmented generation systems that survive real users: chunking strategies, hybrid retrieval, evaluation harnesses, guardrails, and cost engineering. Packed with failure stories (ours) and the fixes (also ours).",
+  1462→    pages: 42,
+  1463→    image: "/images/insight-3.png",
+  1464→    category: "AI Engineering",
+  1465→  },
+  1466→  {
+  1467→    slug: "hospital-flow-forecasting",
+  1468→    title: "Forecasting Hospital Patient Flow",
+  1469→    description:
+  1470→      "How 14-day bed-occupancy forecasts are built — and adopted — in Indian hospitals: data requirements, model choices, clinician trust, and the staffing mathematics. Based on our MediTrust deployment.",
+  1471→    pages: 24,
+  1472→    image: "/images/insight-4.png",
+  1473→    category: "Healthcare Analytics",
+  1474→  },
+  1475→  {
+  1476→    slug: "data-platform-blueprint",
+  1477→    title: "The Modern Data Platform Blueprint",
+  1478→    description:
+  1479→      "Our reference architecture for lakehouse platforms: ingestion patterns, data contracts, quality gates, cataloguing, and access control — with build-vs-buy guidance at every layer, annotated with real cost figures.",
+  1480→    pages: 38,
+  1481→    image: "/images/blog-2.png",
+  1482→    category: "Data Engineering",
+  1483→  },
+  1484→  {
+  1485→    slug: "ai-readiness-checklist",
+  1486→    title: "The Executive AI Readiness Checklist",
+  1487→    description:
+  1488→      "A 40-point assessment for leadership teams: the data, governance, talent, and cultural prerequisites that separate AI investments which compound from pilots which evaporate. Takes one board meeting to complete.",
+  1489→    pages: 18,
+  1490→    image: "/images/blog-3.png",
+  1491→    category: "AI Strategy",
+  1492→  },
+  1493→];
+  1494→
+  1495→// ── FAQs ──────────────────────────────────────────────────────────────────────
+  1496→
+  1497→export const faqs: FaqSeed[] = [
+  1498→  {
+  1499→    question: "What exactly does LFRDCA do?",
+  1500→    answer:
+  1501→      "We're an AI-powered IT services company: we build AI systems, analytics platforms, data pipelines, and the web and mobile products around them. Think of us as a full-stack data partner — from the warehouse, to the model, to the dashboard your CEO opens each morning.",
+  1502→    category: "Services",
+  1503→    order: 1,
+  1504→  },
+  1505→  {
+  1506→    question: "Do you work with small businesses or only enterprises?",
+  1507→    answer:
+  1508→      "Both, happily. Our discovery sprint is scoped to fit: a growing D2C brand and a banking group get the same rigour at different scales. Roughly half our clients started with a single dashboard and grew from there.",
+  1509→    category: "Services",
+  1510→    order: 2,
+  1511→  },
+  1512→  {
+  1513→    question: "Can you work with our existing systems and team?",
+  1514→    answer:
+  1515→      "That's our default mode. We integrate with the stack you already have — ERP, CRM, BI, legacy databases — and collaborate with your in-house team rather than around them. Most engagements include knowledge-transfer sessions so your engineers can run what we build.",
+  1516→    category: "Services",
+  1517→    order: 3,
+  1518→  },
+  1519→  {
+  1520→    question: "How much does a typical project cost?",
+  1521→    answer:
+  1522→      "Engagements typically start around ₹8–15 lakh for a focused analytics or AI pilot and scale with scope; platform builds range higher. Every proposal is fixed-scope with milestone-based billing, so you always know what you're approving before you approve it. Full ranges live on our pricing page.",
+  1523→    category: "Pricing",
+  1524→    order: 4,
+  1525→  },
+  1526→  {
+  1527→    question: "Do you offer fixed-price or time-and-materials contracts?",
+  1528→    answer:
+  1529→      "Fixed-price for well-defined phases (discovery, prototype, MVP) and time-and-materials for long-running product evolution. We recommend whichever fits the risk profile — and we're comfortable putting our estimates in writing.",
+  1530→    category: "Pricing",
+  1531→    order: 5,
+  1532→  },
+  1533→  {
+  1534→    question: "Is there a free consultation?",
+  1535→    answer:
+  1536→      "Yes — the first consultation (an hour, video or at our Noida office) is free and genuinely consultative: we'll tell you if your problem doesn't need AI, or doesn't need us. That honesty has cost us deals and earned us clients.",
+  1537→    category: "Pricing",
+  1538→    order: 6,
+  1539→  },
+  1540→  {
+  1541→    question: "What does your process look like from start to finish?",
+  1542→    answer:
+  1543→      "Four phases: discovery (workshops, data audit, opportunity map), design (architecture, metric definitions, prototypes), build (two-week demo cadence, evaluation suites), and ship (production deployment, monitoring, enablement). You see working software every fortnight from week two.",
+  1544→    category: "Process",
+  1545→    order: 7,
+  1546→  },
+  1547→  {
+  1548→    question: "How long does a typical project take?",
+  1549→    answer:
+  1550→      "A focused analytics engagement runs 6–8 weeks to first production release; AI prototypes come together in 4–6 weeks; data platforms are phased, with usable foundations in 8–10 weeks. The timeline goes in the proposal — and we've delivered 120+ projects on it.",
+  1551→    category: "Process",
+  1552→    order: 8,
+  1553→  },
+  1554→  {
+  1555→    question: "How involved do we need to be as a client?",
+  1556→    answer:
+  1557→      "More than a vendor relationship, less than a second job: expect a weekly 45-minute review, a named business owner for decisions, and domain experts available during discovery. Clients who show up get dramatically better outcomes — we've measured it.",
+  1558→    category: "Process",
+  1559→    order: 9,
+  1560→  },
+  1561→  {
+  1562→    question: "What happens after launch — do you disappear?",
+  1563→    answer:
+  1564→      "The opposite: every project includes a 30-day stabilisation period, and most clients continue with a care plan covering monitoring, model retraining, and iteration hours. Ninety percent of our revenue is repeat business, so disappearing would be commercially foolish as well as rude.",
+  1565→    category: "Support",
+  1566→    order: 10,
+  1567→  },
+  1568→  {
+  1569→    question: "What if something breaks at 2 a.m.?",
+  1570→    answer:
+  1571→      "Care-plan clients have a 24×7 escalation line with SLA-backed response (critical issues: one hour). Better yet, our systems are built to page us before they page you — monitoring and drift alerts are standard on everything we ship.",
+  1572→    category: "Support",
+  1573→    order: 11,
+  1574→  },
+  1575→  {
+  1576→    question: "Do you provide training for our team?",
+  1577→    answer:
+  1578→      "Always — enablement is in every proposal: hands-on workshops, recorded sessions, and documentation written for humans. We measure success by how little you need us after handover, which occasionally puzzles our accountants.",
+  1579→    category: "Support",
+  1580→    order: 12,
+  1581→  },
+  1582→];
+  1583→

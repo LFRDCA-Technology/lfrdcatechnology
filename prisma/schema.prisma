@@ -1,0 +1,196 @@
+// ── LFRDCA Technologies · Prisma schema (SQLite) ─────────────────────────────
+// Arrays are stored as JSON strings (SQLite has no list primitives).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         String   @default("USER")
+  phone        String?
+  company      String?
+  avatar       String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Service {
+  id              String @id @default(cuid())
+  slug            String @unique
+  title           String
+  tagline         String
+  description     String
+  longDescription String
+  icon            String
+  image           String
+  features        String // JSON array of strings
+  deliverables    String // JSON array of strings
+  order           Int
+}
+
+model Industry {
+  id          String @id @default(cuid())
+  slug        String @unique
+  title       String
+  description String
+  image       String
+  stats       String // JSON array of {label,value}
+  useCases    String // JSON array of strings
+  order       Int
+}
+
+model Solution {
+  id           String @id @default(cuid())
+  slug         String @unique
+  title        String
+  tagline      String
+  description  String
+  image        String
+  capabilities String // JSON array of strings
+  outcomes     String // JSON array of {label,value}
+}
+
+model TeamMember {
+  id       String  @id @default(cuid())
+  name     String
+  role     String
+  bio      String
+  image    String
+  linkedin String?
+  twitter  String?
+  order    Int
+}
+
+model Post {
+  id         String   @id @default(cuid())
+  slug       String   @unique
+  title      String
+  excerpt    String
+  content    String
+  category   String
+  tags       String // JSON array of strings
+  image      String
+  author     String
+  authorRole String
+  readTime   Int
+  views      Int      @default(0)
+  createdAt  DateTime @default(now())
+}
+
+model CaseStudy {
+  id        String  @id @default(cuid())
+  slug      String  @unique
+  client    String
+  title     String
+  industry  String
+  challenge String
+  solution  String
+  results   String // JSON array of strings
+  metrics   String // JSON array of {label,value}
+  image     String
+  year      String
+  featured  Boolean @default(false)
+  services  String // JSON array of strings
+}
+
+model Job {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  title        String
+  department   String
+  location     String
+  type         String
+  experience   String
+  description  String
+  requirements String // JSON array of strings
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+}
+
+model Application {
+  id          String   @id @default(cuid())
+  jobSlug     String
+  jobTitle    String
+  name        String
+  email       String
+  phone       String?
+  resumeLink  String?
+  coverLetter String?
+  createdAt   DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model QuoteRequest {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  company   String?
+  phone     String?
+  service   String
+  budget    String
+  message   String
+  status    String   @default("new")
+  createdAt DateTime @default(now())
+}
+
+model Testimonial {
+  id      String @id @default(cuid())
+  name    String
+  role    String
+  company String
+  content String
+  avatar  String
+  rating  Int
+}
+
+model EventItem {
+  id          String @id @default(cuid())
+  title       String
+  date        String // ISO date string
+  location    String
+  type        String
+  description String
+  image       String
+}
+
+model Whitepaper {
+  id          String @id @default(cuid())
+  slug        String @unique
+  title       String
+  description String
+  pages       Int
+  image       String
+  category    String
+}
+
+model Faq {
+  id       String @id @default(cuid())
+  question String
+  answer   String
+  category String
+  order    Int
+}
