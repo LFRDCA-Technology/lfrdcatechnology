@@ -130,8 +130,10 @@ export default function AboutPage() {
               }
             />
             <p className="font-sans text-[15px] leading-relaxed tracking-tight text-charcoal">
-              LFRDCA Technologies is an AI-powered IT company founded in 2019
-              by Satyam RojhaX. We design data platforms, build AI systems and
+              LFRDCA Technologies is an AI-powered IT company founded in
+              July 2026 by Satyam RojhaX &amp; associates — the formal home
+              of a data-and-AI practice that has been shipping since 2019. We
+              design data platforms, build AI systems and
               craft analytics that people actually use — for healthcare,
               finance, retail and manufacturing teams across India and beyond.
             </p>
@@ -288,8 +290,8 @@ export default function AboutPage() {
               Want the <em className="font-normal">full</em> story?
             </h2>
             <p className="font-sans text-sm tracking-tight text-paper/70 mt-5 max-w-md mx-auto">
-              (From a Noida co-working corner in 2019 to 9 countries — it&apos;s
-              a decent read)
+              (Seven years of practice, one July 2026 founding, nine
+              countries — it&apos;s a decent read)
             </p>
             <div className="flex flex-wrap justify-center gap-4 mt-9">
               <PillButton to="/story" variant="dusty" size="lg">

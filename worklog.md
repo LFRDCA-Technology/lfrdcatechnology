@@ -226,3 +226,29 @@ Work Log:
 
 Stage Summary:
 - bun run lint: 0 errors, 0 warnings. Dev server compiling clean; APIs returning 200s
+
+---
+Task ID: 5
+Agent: lead (Z.ai Code)
+Task: Founding timeline update to July 2026 + smoothness polish + full E2E browser verification
+
+Work Log:
+- Read full worklog + surveyed project state (57 routes live, 42 images, APIs 200s, dev server clean)
+- CANONICAL NARRATIVE established: practice ran 2019–2026 → LFRDCA Technologies founded July 2026 in Noida → "seven years of practice, two months of company" (today = Sept 2026)
+- content.ts: re-dated 10 blog posts (now 2026-07-03 → 2026-09-01, ~2/week since founding), 3 pre-founding whitepapers → launch week Jul 2–4, 2 past events (Big Data Summit retitled 2026 + re-dated 2026-08-14; Campus Connect → 2026-07-31)
+- story.tsx: rewrote timeline 8→7 entries (2019/2021/2023/2025 prehistory + 2026 JULY founding / AUGUST month-one / SEPTEMBER today); added month captions under year numerals, inverted founding card + coral Tag + coral DoodleStar spine marker + "(the name arrives)" badge; fixed React key collision for 3× 2026 entries; hero parenthetical now "founded July 2026 · seven years of prehistory · honest bits left in"
+- about.tsx: "founded in 2019" → "founded in July 2026 … practice shipping since 2019"; CTA parenthetical updated
+- investors.tsx: FUNDING_HISTORY restructured to 4 chapters (2019 bootstrap / 2022 angel / Jul 2026 founding / Sep 2026 Series-A talks) with month captions; hero parenthetical "Founded July 2026 · …"; FY 2025-26 note → TTM-to-Aug-2026 practice record; narrative para rewritten
+- status.tsx: 3 incidents re-dated post-founding (16 Jul / 29 Jul / 12 Aug 2026)
+- terms/privacy/gdpr: "Last updated: January 2026" → August 2026
+- portfolio.tsx: hero parenthetical notes "a couple pre-date the name"
+- SMOOTHNESS: page.tsx RouteOutlet wrapped in framer-motion fade-up (keyed by path, 0.42s, ease [0.22,1,0.36,1]) + MotionConfig reducedMotion="user"; globals.css adds :focus-visible cobalt outline, img fade transition, full prefers-reduced-motion kill-switch
+- DB refresh: stopped server, deleted db/custom.db, db:push, restarted; ensureSeeded re-seeded from updated content.ts (posts/whitepapers/events dates verified via API)
+- FIXED mobile horizontal overflow: Squiggle base class + "max-w-full" (520/420/340px SVGs poked out on 390px screens across 12+ pages — rendering unchanged since content is height-constrained); news.tsx mailto pill made break-all/max-w-full; verified scrollWidth === 390 on 40 routes
+- E2E via Agent Browser: home/story/about/service-detail/blog/blog-post render; register→JWT→dashboard; login→cookie; logout→cookie cleared (401 after); nav overlay open/link/auto-close; contact form POST 200; AI chat POST /api/chat 200 + reply rendered; footer credit Satyam RojhaX; sticky footer on short pages + natural push on long; mobile 390px clean; VLM visual checks on story timeline + mobile home passed; zero console/page/dev-log errors
+- bun run lint: 0 errors · tsc --noEmit: 0 errors
+
+Stage Summary:
+- Timeline now canonically July 2026-founded everywhere (story/about/investors/status/legal/blog/whitepapers/events) with a coherent "practice → company" narrative that preserves all track-record numbers
+- Smoothness: page transitions, reduced-motion respect, keyboard focus rings, zero horizontal scroll on all routes
+- All verification green; platform fully operational

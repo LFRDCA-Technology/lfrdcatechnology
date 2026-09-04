@@ -135,6 +135,16 @@
     background: #81aed9;
     color: #000;
   }
+  /* keyboard focus — visible, sketchbook-blue, never on mouse click */
+  :focus-visible {
+    outline: 2px solid #55a1ea;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  /* smoother image reveal */
+  img {
+    transition: opacity 0.3s ease;
+  }
 }
 
 @layer utilities {
@@ -186,5 +196,19 @@
   }
   .link-coral:hover {
     text-decoration-color: #81aed9;
+  }
+}
+
+/* respect users who prefer stillness */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto !important;
   }
 }

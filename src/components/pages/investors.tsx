@@ -28,27 +28,41 @@ const WHY_CARDS = [
   {
     icon: TrendingUp,
     title: "Capital-efficient growth",
-    copy: "Bootstrapped since 2019 and profitable throughout — 3.2× revenue growth without a rupee of outside capital. Money we raise buys acceleration, not survival.",
+    copy: "Bootstrapped since 2019 — the practice was profitable throughout, and the company it became still is. 3.2× revenue growth without a rupee of outside capital. Money we raise buys acceleration, not survival.",
   },
 ];
 
-const FUNDING_HISTORY = [
+const FUNDING_HISTORY: {
+  year: string;
+  month?: string;
+  title: string;
+  copy: string;
+  tag: string;
+}[] = [
   {
     year: "2019",
     title: "Bootstrap",
-    copy: "Founded by Satyam RojhaX with a laptop, a sketchbook and stubborn margins. No angel cheque, no runway anxiety — just clients who paid on time.",
+    copy: "The practice begins — Satyam RojhaX, a laptop, a sketchbook and stubborn margins. No angel cheque, no runway anxiety — just clients who paid on time.",
     tag: "₹0 raised",
   },
   {
     year: "2022",
     title: "Angel round",
-    copy: "A small, deliberate round from operators who'd worked with us — enough to open the AI lab without touching the culture. Dilution kept politely minimal.",
+    copy: "A small, deliberate round from operators who'd worked with the practice — enough to open the AI lab without touching the culture. Dilution kept politely minimal.",
     tag: "Friends & operators",
   },
   {
     year: "2026",
+    month: "July",
+    title: "The founding",
+    copy: "The practice formally incorporates as LFRDCA Technologies in Noida — every relationship and every rupee of margin carried across. No new capital needed; the name was the round.",
+    tag: "LFRDCA is born",
+  },
+  {
+    year: "2026",
+    month: "September",
     title: "Series A conversations",
-    copy: "With the Intelligence platform in internal beta and 80+ clients behind us, we're selectively talking to partners who bring distribution, not just capital.",
+    copy: "With the Intelligence platform in internal beta and 80+ client relationships behind us, we're selectively talking to partners who bring distribution, not just capital.",
     tag: "In progress",
   },
 ];
@@ -71,7 +85,7 @@ export default function InvestorsPage() {
             Investor <em className="font-normal">relations.</em>
           </>
         }
-        parenthetical="Founded 2019 · Bootstrapped & profitable · Noida, India"
+        parenthetical="Founded July 2026 · Bootstrapped & profitable · Noida, India"
       >
         <DoodleStar className="mt-4 animate-wiggle" size={30} />
       </PageHero>
@@ -90,10 +104,12 @@ export default function InvestorsPage() {
               }
             />
             <p className="font-sans text-[15px] leading-relaxed tracking-tight text-charcoal">
-              LFRDCA was never meant to be a blitzscale story. We grew one
-              retainer at a time, one referral at a time, hiring only when the
-              work demanded it. Seven years in, we&apos;re profitable,
-              45+ experts strong, and serving clients across nine countries.
+              LFRDCA was never meant to be a blitzscale story. The practice
+              behind it grew one retainer at a time, one referral at a time,
+              hiring only when the work demanded it — then, in July 2026, gave
+              seven years of momentum a proper name. Two months in as a
+              company: profitable, 45+ experts strong, serving clients across
+              nine countries.
             </p>
             <p className="font-sans text-[15px] leading-relaxed tracking-tight text-charcoal">
               Now the data-and-AI category is compounding faster than our
@@ -114,8 +130,9 @@ export default function InvestorsPage() {
               <StatBlock value="45+" label="Team size" />
             </div>
             <p className="font-sans text-[12px] tracking-tight text-charcoal">
-              (FY 2025-26, unaudited management figures — audited accounts
-              available under NDA)
+              (Trailing twelve months to Aug 2026 — the practice&apos;s
+              record, carried into the company. Unaudited management figures;
+              audited accounts available under NDA)
             </p>
           </SketchCard>
         </div>
@@ -170,7 +187,7 @@ export default function InvestorsPage() {
               way
             </>
           }
-          parenthetical="Three chapters, no cliffhangers"
+          parenthetical="Four chapters, no cliffhangers"
           className="mb-12"
         />
         <div className="relative flex flex-col gap-10">
@@ -194,16 +211,21 @@ export default function InvestorsPage() {
           </svg>
           {FUNDING_HISTORY.map((f) => (
             <article
-              key={f.year}
+              key={f.title}
               className="grid grid-cols-1 sm:grid-cols-[44px_120px_1fr] gap-4 sm:gap-8 items-start"
             >
               <div className="hidden sm:flex items-center justify-center w-[28px] h-[28px] rounded-full bg-white border-[1.5px] border-ink shadow-sketch-sm">
                 <span className="w-[8px] h-[8px] rounded-full bg-coral" />
               </div>
-              <div className="flex sm:justify-end">
+              <div className="flex flex-col gap-1 sm:justify-end sm:text-right">
                 <span className="font-serif font-light text-[clamp(36px,5vw,52px)] leading-none">
                   {f.year}
                 </span>
+                {f.month && (
+                  <span className="font-sans text-[10px] uppercase tracking-[0.16em] text-charcoal">
+                    {f.month}
+                  </span>
+                )}
               </div>
               <SketchCard className="flex flex-col gap-4">
                 <div className="flex flex-wrap items-center gap-3">

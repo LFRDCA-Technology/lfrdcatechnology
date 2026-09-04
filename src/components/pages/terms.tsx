@@ -32,7 +32,7 @@ export default function TermsPage() {
               Terms, without the <em className="font-normal">fog</em>.
             </>
           }
-          parenthetical="Last updated: January 2026"
+          parenthetical="Last updated: August 2026"
         />
         <DoodleStar
           className="absolute top-24 right-[6%] hidden md:block animate-wiggle"

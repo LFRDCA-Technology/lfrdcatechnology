@@ -1,6 +1,6 @@
 "use client";
 
-// ── Story — the LFRDCA origin timeline, 2019 → today ────────────────────────
+// ── Story — prehistory 2019 → founded July 2026 → today ──────────────────────
 
 import { apiFetch } from "@/lib/auth";
 import { useEffect, useState } from "react";
@@ -9,74 +9,78 @@ import { DoodleStar, Squiggle } from "@/components/site/squiggle";
 
 interface StoryEntry {
   year: string;
+  month?: string; // for 2026 entries — the company is young
   title: string;
   copy: string;
   tag: string;
   image?: { src: string; alt: string };
   today?: boolean;
+  founding?: boolean;
 }
 
 const TIMELINE: StoryEntry[] = [
   {
     year: "2019",
     title: "A sketchbook and a corner desk",
-    copy: "Satyam RojhaX sketches his first production data pipeline in a Noida Sector 62 co-working corner — one laptop, one notebook, and a growing suspicion that most companies were drowning in data they never read. LFRDCA Technologies is registered before the chai goes cold.",
-    tag: "The beginning",
+    copy: "Satyam RojhaX sketches his first production data pipeline in a Noida Sector 62 co-working corner — one laptop, one notebook, and a growing suspicion that most companies were drowning in data they never read. No company yet. Just a practice, a rate card, and chai on retainer.",
+    tag: "Before the name",
     image: {
       src: "/images/founder.png",
       alt: "Portrait of Satyam RojhaX, founder of LFRDCA Technologies",
     },
   },
   {
-    year: "2020",
-    title: "Three clients and a leap of spreadsheet-shaped faith",
-    copy: "The first three clients sign on — all retail, all analytics. Demand forecasts, store clustering, and one heroic migration off a decade of spreadsheets. Two of them are still clients today, which we consider the best kind of bragging right.",
-    tag: "First clients",
-  },
-  {
     year: "2021",
     title: "The data engineering practice",
-    copy: "We stop borrowing pipelines and start building them properly. A dedicated data engineering practice forms around warehouses, lakehouses and the quiet glory of idempotent ingestion. The team hits double digits; the whiteboards run out of space.",
+    copy: "The associates multiply. A dedicated data engineering practice forms around warehouses, lakehouses and the quiet glory of idempotent ingestion. The headcount hits double digits; the whiteboards run out of space. Still no logo — the work didn't seem to need one.",
     tag: "Practice formed",
   },
   {
-    year: "2022",
-    title: "The AI lab opens",
-    copy: "Twenty experts strong, we open a dedicated AI lab — equal parts research rigor and engineering pragmatism. Early LLM prototypes graduate into production systems, and the rule is written: no model ships without an evaluation suite.",
-    tag: "AI lab",
-    image: {
-      src: "/images/culture-2.png",
-      alt: "The LFRDCA AI lab team at a whiteboard session",
-    },
-  },
-  {
     year: "2023",
-    title: "Project #50 and the healthcare practice",
-    copy: "The fiftieth project ships — a clinical analytics platform that clinicians actually open on rounds. It sparks our formal healthcare practice, and a company-wide rule that dashboards should read like newspaper front pages.",
+    title: "Project #50 and a healthcare habit",
+    copy: "The fiftieth engagement ships — a clinical analytics platform that clinicians actually open on rounds. It sparks the healthcare practice, and a house rule that dashboards should read like newspaper front pages.",
     tag: "50 projects",
   },
   {
-    year: "2024",
-    title: "Awards, and eighty-something clients",
-    copy: "Recognition arrives (unbidden, which is the nice kind) — regional and national awards for AI innovation and engineering culture. The client roster passes 80. We celebrate by… ordering more whiteboard markers.",
-    tag: "80+ clients",
+    year: "2025",
+    title: "The lab leaks early",
+    copy: "A dedicated AI lab opens — equal parts research rigour and engineering pragmatism. Early LLM prototypes graduate into production systems, the tooling that will become LFRDCA Intelligence takes shape, and the rule is written: no model ships without an evaluation suite.",
+    tag: "Platform R&D",
     image: {
-      src: "/images/culture-5.png",
-      alt: "The LFRDCA team celebrating an award in the Noida studio",
+      src: "/images/culture-2.png",
+      alt: "The AI lab team at a whiteboard session",
     },
   },
   {
-    year: "2025",
-    title: "LFRDCA Intelligence — R&D begins",
-    copy: "We turn the tooling we'd built for ourselves into a product research programme. LFRDCA Intelligence: a platform for governed data, grounded AI and analytics that explains itself. Internal beta first; opinions strong.",
-    tag: "Platform R&D",
+    year: "2026",
+    month: "July",
+    title: "LFRDCA Technologies is founded",
+    copy: "Seven years of practice get a proper name. LFRDCA Technologies is registered in Noida Sector 62 in July 2026 — Listen, Frame, Research, Design, Create, Amplify — with 45+ experts, 80+ client relationships and one shared sketchbook carried into the new studio. The chai, famously, does not go cold.",
+    tag: "The founding",
+    founding: true,
+    image: {
+      src: "/images/office-hero.png",
+      alt: "The LFRDCA Technologies studio in Noida Sector 62",
+    },
   },
   {
     year: "2026",
+    month: "August",
+    title: "First month under the name",
+    copy: "The journal (this very blog) opens with a launch-week burst of essays. The first whitepapers leave the vault, Data & Donuts becomes a monthly fixture at the Noida office, and the first contracts signed under the LFRDCA name arrive — two of them from clients who have been with the practice for years, which we consider the best kind of bragging right.",
+    tag: "Month one",
+  },
+  {
+    year: "2026",
+    month: "September",
     title: "Today — 45+ experts, 9 countries",
-    copy: "Forty-five-plus experts across data engineering, AI, analytics and cloud, serving clients in nine countries — still sketching first, shipping second, iterating always. The corner desk is now a studio; the sketchbook never left.",
+    copy: "Forty-five-plus experts across data engineering, AI, analytics and cloud, serving clients in nine countries — still sketching first, shipping second, iterating always. The corner desk is now a studio. The company is two months old; the practice, seven years. Both are just getting started.",
     tag: "Present day",
     today: true,
+    image: {
+      src: "/images/culture-5.png",
+      alt: "The LFRDCA team in the Noida studio",
+    },
   },
 ];
 
@@ -110,7 +114,7 @@ export default function StoryPage() {
             <em className="font-normal">origin story.</em>
           </>
         }
-        parenthetical="2019 → 2026, with the honest bits left in"
+        parenthetical="founded July 2026 · seven years of prehistory · honest bits left in"
       >
         <Squiggle
           variant="dash"
@@ -147,16 +151,17 @@ export default function StoryPage() {
           <div className="flex flex-col gap-12 md:gap-16">
             {TIMELINE.map((entry) => (
               <article
-                key={entry.year}
+                key={`${entry.year}-${entry.month ?? entry.tag}`}
                 className="relative grid grid-cols-1 md:grid-cols-[160px_1fr] md:gap-14"
               >
                 {/* spine marker */}
                 <DoodleStar
                   size={22}
+                  color={entry.founding ? "#ff8562" : undefined}
                   className="hidden md:block absolute top-10 left-[calc(160px+28px)] -translate-x-1/2"
                 />
                 {/* year column */}
-                <div className="flex md:justify-end md:text-right md:pr-2 mb-2 md:mb-0">
+                <div className="flex flex-col gap-1 md:justify-end md:text-right md:pr-2 mb-2 md:mb-0">
                   <h2
                     className={`font-serif font-light leading-none text-[clamp(48px,7vw,76px)] ${
                       entry.today ? "italic" : ""
@@ -164,15 +169,28 @@ export default function StoryPage() {
                   >
                     {entry.year}
                   </h2>
+                  {entry.month && (
+                    <span className="font-sans text-[11px] uppercase tracking-[0.16em] text-charcoal">
+                      {entry.month}
+                    </span>
+                  )}
                 </div>
                 {/* content column */}
                 <div className="relative">
                   <SketchCard
-                    tone={entry.today ? "inverted" : "white"}
+                    tone={entry.founding ? "inverted" : "white"}
                     className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-start"
                   >
                     <div className="flex flex-col gap-4 flex-1">
-                      <Tag tone={entry.today ? "charcoal" : "dusty"}>
+                      <Tag
+                        tone={
+                          entry.founding
+                            ? "coral"
+                            : entry.today
+                              ? "charcoal"
+                              : "dusty"
+                        }
+                      >
                         {entry.tag}
                       </Tag>
                       <h3 className="font-serif font-light text-[clamp(24px,3.4vw,34px)] leading-[1.1]">
@@ -180,7 +198,9 @@ export default function StoryPage() {
                       </h3>
                       <p
                         className={`font-sans text-[14px] leading-relaxed tracking-tight ${
-                          entry.today ? "text-paper/80" : "text-charcoal"
+                          entry.founding
+                            ? "text-paper/80"
+                            : "text-charcoal"
                         }`}
                       >
                         {entry.copy}
@@ -195,6 +215,11 @@ export default function StoryPage() {
                       />
                     )}
                   </SketchCard>
+                  {entry.founding && (
+                    <span className="absolute -top-5 right-8 font-sans text-[12px] uppercase tracking-[0.16em] text-coral bg-paper px-2">
+                      (the name arrives)
+                    </span>
+                  )}
                   {entry.today && (
                     <span className="absolute -top-5 right-8 font-sans text-[12px] uppercase tracking-[0.16em] text-charcoal bg-paper px-2">
                       (you are here)

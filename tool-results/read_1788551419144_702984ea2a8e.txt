@@ -173,3 +173,57 @@
    173→- Integration note for registry owner: routes to register are /careers, /internships, /training, /pricing, /faq, /support, /docs, /status, /contact, /quote, /thank-you, /coming-soon (all default exports, no props).
    174→- Detail record: agent-ctx/3-d-page-builder.md
    175→
+   176→---
+   177→Task ID: 3-b
+   178→Agent: services-solutions-pages
+   179→Task: Services, Industries & Solutions pages (12 of 57 routes) — services, service-detail (8 slugs), industries, industry-detail (4 slugs), solutions, solution-detail (3 slugs) — in Dyotanya sketchbook style, matching home.tsx reference patterns.
+   180→
+   181→Work Log:
+   182→- Read worklog.md (master architecture + API contract), src/components/site/ui.tsx + squiggle.tsx (exact component APIs), src/lib/router.tsx (Link/useSegments), src/lib/auth.ts (apiFetch), src/lib/types.ts (Service/Industry/CaseStudy), home.tsx reference implementation, plus case-study.tsx detail-page pattern and the seeded content shapes in src/lib/content.ts before writing any code.
+   183→- Created `services.tsx` — PageHero "Eight crafts. One *obsessive* team." (parenthetical "pick one, or let us compose a team"); GET /api/services → staggered 3-col grid mirroring home's ServiceCard exactly (CircularImage 110, TrophyBadge on first 3, floating serif index numerals, hover-italic titles, coral "Explore →" → /services/<slug>, lg translate stagger); LoadingState + EmptyState fallbacks; charcoal "How we work" band with 4 numbered circle-node steps (01 Discover — two weeks of honest questions / 02 Design — architecture & success metrics / 03 Build — weekly demos / 04 Ship & support) connected by a dusty Squiggle variant="dash" stretched aspect-true (w-full max-w-[420px] h-auto); slow tech-stack Marquee (Python, PyTorch, dbt, Airflow, Spark, Kubernetes, Terraform, Next.js, Snowflake, Postgres) with sr-only text; inverted CTA SketchCard "Not sure what you *need*?" → /quote + /contact.
+   184→- Created `service-detail.tsx` — serves all 8 service slugs via useSegments()[1] validated against KNOWN_SLUGS; Promise.allSettled fetch of /api/services/<slug> + /api/services (for 3 related, current excluded); pre-hydration (!slug) → LoadingState, invalid/404/fail → EmptyState "This service page is still being sketched" + "All services" pill; PageHero with TitleWithEm helper (last word italicised for the roman/italic mix, single-word titles fully em) + tagline parenthetical; hero row CircularImage(200)+TrophyBadge+ghost order numeral+DoodleStar; "The work" renders longDescription split "\n\n" as 15px/1.75 sans paragraphs; "Capabilities" 2-col SketchCards with lucide Check strokeWidth 1.5 in dusty circles; "Deliverables" serif 01–NN numbered ledger; charcoal "Engagement snapshot" band with 3 StatBlocks (Timeline 4–12 wks / Team 3–6 people / Model Fixed or T&M, [&_span]:text-paper label override); related-services trio; inverted CTA "Start with {title}" → /quote. Local SketchTitle helper (index + clamp serif h2 + parenthetical + animated underline squiggle).
+   185→- Created `industries.tsx` — PageHero "Where our data *lives*."; GET /api/industries → alternating rows (CircularImage 240, md:flex-row-reverse odd, ghost numerals, DoodleStar on first) with serif title, first description paragraph, stats StatBlock row, first 4 useCases as dusty Tags, coral "Explore {title} →" → /industries/<slug>; LoadingState + EmptyState fallbacks; closing tone="paper" CTA "Don't see your *industry*? (that's fine — data is data)" → /contact.
+   186→- Created `industry-detail.tsx` — serves healthcare/finance/retail/manufacturing; fetches LIST /api/industries then finds by slug (missing/failed → EmptyState + "← All industries"); PageHero "The *{title}* field guide."; hero split CircularImage(230) + stats StatBlock grid; "The landscape" renders description paragraphs split "\n\n"; useCases as serif 01–NN numbered ledger with thin connecting border-ink/10 lines; case-study proof via /api/case-studies with CASE_MATCHERS loose regex match (healthcare→/healthcare/i, finance→/fintech|finance|banking/i, retail→/retail|e-commerce/i, manufacturing→/manufacturing/i) and first-case-study fallback — verified against live seed data (Retail/Healthcare/Fintech/Manufacturing industries all exist); shown as small SketchCard (CircularImage 96 + TrophyBadge + Tags + "Read the story →" → /portfolio/<slug>); inverted CTA "Let's talk about your *{title}* data." → /quote.
+   187→- Created `solutions.tsx` — NO API (per brief, there is no /api/solutions endpoint): 3 solutions hardcoded with the exact supplied data (LFRDCA DataPlatform / LFRDCA Assist / LFRDCA Insight Cloud with taglines, images, 6 capabilities, 3 outcomes each); PageHero "Solutions, not *science projects*."; alternating large cards (CircularImage 220, serif brand+italic product titles, Tag capability pills, outcomes StatBlocks, "Explore {product} →" PillButtons → /solutions/<slug>); "Composable by design" section with 3 icon cards (Plug into your stack / Start small, scale fast / Own your data — lucide Plug/Sprout/KeyRound strokeWidth 1.5, 2 sentences each); inverted "compose your stack" CTA → /quote with coral /services cross-link.
+   188→- Created `solution-detail.tsx` — serves data-platform/ai-assistants/analytics-cloud from hardcoded rich detail (each expanded to 3 substantive paragraphs, the 6 capabilities, 3 outcomes, 5 titled "What's inside" bullets, 3 "Ideal for" criteria, 2 honest Q&As); unknown slug → EmptyState + "← All solutions"; !slug → LoadingState (router pre-hydration); layout: PageHero + hero split (CircularImage 220 + outcomes StatBlocks) → "The pitch" paragraphs → "Capabilities" 2-col Check cards → "What's inside" numbered ledger → "Ideal for" 3 Check cards → "How it ships" 4 steps (Week 0 discovery → Week 2 skeleton live → Week 6 v1 shipped → Ongoing iterate) with numbered circle nodes over a dash squiggle → "Fair questions" Q&A SketchCards → inverted CTA "Start with *{product}*" → /quote.
+   189→- Verified without dev server / lint / installs: `./node_modules/.bin/tsc --noEmit -p tsconfig.json` → 0 errors in src/ (only pre-existing errors in unrelated examples/ + skills/); unused-import scan clean (naive-script flags for ReactNode/icons confirmed false positives by grep); live curl smoke tests of /api/services, /api/services/ai-development, /api/industries, /api/case-studies all match consumed shapes; dev.log checked — the integrator's earlier "Can't resolve './service-detail' / './industry-detail' / './solution-detail'" errors are now resolved by these files (latest compile ✓), registry wiring intentionally left to the integrator (no existing files touched).
+   190→
+   191→Stage Summary:
+   192→- Files created (exactly 6, no existing files modified): `src/components/pages/{services,service-detail,industries,industry-detail,solutions,solution-detail}.tsx`.
+   193→- Endpoints consumed (live): GET /api/services, GET /api/services/[slug], GET /api/industries, GET /api/case-studies — every fetch has LoadingState/EmptyState fallbacks; solutions pages are deliberately API-free (hardcoded per brief).
+   194→- All pages: "use client" default exports, Dyotanya-compliant (serif font-light roman/italic headings, sans tracking-tight body, parentheticals, index markers, SketchCards/PillButtons/Tags/StatBlocks, coral link text only, CircularImage everywhere, lucide strokeWidth 1.5 sparingly, squiggles/DoodleStars woven, 15px/1.75 editorial paragraphs).
+   195→- Integration note for registry owner: routes to register are /services, /services/:slug, /industries, /industries/:slug, /solutions, /solutions/:slug — filenames already match the registry imports observed in dev.log.
+   196→- Detail record: agent-ctx/3-b-services-solutions-pages.md
+   197→
+   198→---
+   199→Task ID: 2-b
+   200→Agent: lead (Z.ai Code)
+   201→Task: Generate 42 AI images in Dyotanya editorial-sketchbook style
+   202→
+   203→Work Log:
+   204→- Created scripts/generate-images.sh with 42 prompts (founder + 8 team portraits, 6 culture scenes, 10 blog covers, 6 case studies, 4 insights, 3 events, ai-lab, data-viz, office-hero, og-cover)
+   205→- Background nohup runs were reaped by sandbox — switched to resumable foreground chunks (script skips existing files)
+   206→- Learned 1440x720 is invalid (not multiple of 32) — used 1344x768 for wide images
+   207→- Generated all 42 images into public/images/
+   208→
+   209→Stage Summary:
+   210→- 42/42 images generated, zero failures after size fix; all pages reference /images/*.png which now exist
+   211→
+   212→---
+   213→Task ID: 4
+   214→Agent: lead (Z.ai Code)
+   215→Task: Core infrastructure, design system, home page, registry wiring, lint cleanup
+   216→
+   217→Work Log:
+   218→- globals.css: Dyotanya @theme tokens (paper/ink/charcoal/dusty/cobalt/coral, shadow-sketch offsets, marquee/float/wiggle/draw-line animations, sketch-scroll scrollbar, paper-grain), shadcn vars remapped to sketchbook palette
+   219→- layout.tsx: Cormorant Garamond (300-600 + italic, true Simeiz-like light serif) + Manrope; LFRDCA metadata
+   220→- Built src/lib: router.tsx (hash router, Link, useSegments, navigateTo), auth.ts (apiFetch + useAuth), types.ts (15 domain types)
+   221→- Built src/components/site: squiggle.tsx (8 squiggle variants + DoodleStar/HandArrow/CircleScribble), ui.tsx (SketchCard, PillButton, PageHero, SectionHeader, CircularImage, Marquee, sketch form controls, StatBlock, Tag, LoadingState, EmptyState, Section), header.tsx, nav-overlay.tsx (full-screen 4-group nav), footer.tsx (sticky, credits Satyam RojhaX), chat-widget.tsx (AI assistant → POST /api/chat)
+   222→- page.tsx: SPA shell (RouterProvider + header/nav/footer/chat + RouteOutlet)
+   223→- home.tsx: reference implementation (hero with inline founder portrait, marquee, staggered services, stats band, featured case studies, testimonials, journal teaser, CTA)
+   224→- registry.tsx: wired all 45 page components → 57 routes incl. :param dynamic patterns
+   225→- Fixed service-detail.tsx setState-in-effect lint error; removed 3 unused eslint directives
+   226→
+   227→Stage Summary:
+   228→- bun run lint: 0 errors, 0 warnings. Dev server compiling clean; APIs returning 200s
+   229→

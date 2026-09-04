@@ -567,7 +567,7 @@ export const posts: PostSeed[] = [
     authorRole: "Head of Analytics",
     readTime: 5,
     views: 842,
-    createdAt: "2026-08-18T10:00:00.000Z",
+    createdAt: "2026-09-01T10:00:00.000Z",
     content: `Every second consulting engagement starts the same way: an apologetic slide titled "Current State of Our Data" with more red boxes than green ones. The client braces for a lecture. We pour the coffee and say the thing nobody expects: *good — let's start anyway.*
 
 ## The perfection myth
@@ -608,7 +608,7 @@ Perfect data is a destination you reach by walking, not by waiting. Lace up. Sta
     authorRole: "Founder & CEO",
     readTime: 7,
     views: 691,
-    createdAt: "2026-08-05T09:30:00.000Z",
+    createdAt: "2026-08-25T09:30:00.000Z",
     content: `We've spent three years helping Indian enterprises adopt AI, and we've kept a private list of every failure mode we've witnessed. This is that list, published. Consider it penance for all the keynote talks that over-promised.
 
 ## Where AI actually pays today
@@ -650,7 +650,7 @@ The organisations winning with AI aren't the ones with the biggest budgets. They
     authorRole: "Head of Analytics",
     readTime: 6,
     views: 558,
-    createdAt: "2026-07-22T11:15:00.000Z",
+    createdAt: "2026-08-18T11:15:00.000Z",
     content: `There's a dashboard in your company right now with fourteen tabs, two hundred charts, and a weekly audience of zero. It was built with love, launched with an all-hands demo, and died of loneliness. This is a field guide to the species — and how to stop breeding them.
 
 ## The taxonomy of unread dashboards
@@ -694,7 +694,7 @@ And when someone requests "just one more chart," ask the field-guide question: w
     authorRole: "Head of AI Engineering",
     readTime: 8,
     views: 913,
-    createdAt: "2026-07-08T08:45:00.000Z",
+    createdAt: "2026-08-08T08:45:00.000Z",
     content: `Forty models into our MLOps journey, we sat down as a team and asked an uncomfortable question: what do we know now that we wish someone had told us at model number one? This post is the answer, lightly edited for print.
 
 ## Lesson 1: The model is 10% of the system
@@ -748,7 +748,7 @@ None of this is glamorous. All of it is why our fortieth deployment was a non-ev
     authorRole: "CTO",
     readTime: 5,
     views: 404,
-    createdAt: "2026-06-19T14:00:00.000Z",
+    createdAt: "2026-08-01T14:00:00.000Z",
     content: `While the AI spotlight burns bright, something quieter has been happening underneath it: data engineering has been rewritten. Not with one big bang, but with a dozen small tectonic shifts that together change how every pipeline gets built. If your mental model of data engineering is still "nightly cron jobs into a warehouse," it's time for an update.
 
 ## What changed
@@ -792,7 +792,7 @@ So here's to the quiet revolution — the schemas enforced, the tests written, t
     authorRole: "DevOps Lead",
     readTime: 6,
     views: 617,
-    createdAt: "2026-06-02T10:30:00.000Z",
+    createdAt: "2026-07-27T10:30:00.000Z",
     content: `We've audited dozens of cloud bills, and the pattern is remarkably consistent: the top three line items are almost never pricing problems. They're design problems wearing a pricing costume. Here's how to tell the difference — and what to do about it.
 
 ## The usual suspects
@@ -832,7 +832,7 @@ Your cloud provider's pricing page is not where the money leaks. The architectur
     authorRole: "CTO",
     readTime: 5,
     views: 349,
-    createdAt: "2026-05-14T13:20:00.000Z",
+    createdAt: "2026-07-21T13:20:00.000Z",
     content: `Every security audit produces two artefacts: a findings report and a feeling. The report lists the twelve vulnerabilities. The feeling — usually unspoken — is that security is something that happens to the team twice a year, like performance reviews and fire drills. The teams that stay out of breach headlines are the ones that replace that feeling with habits.
 
 ## Why checklists fail
@@ -871,7 +871,7 @@ Security isn't a checkbox, because checkboxes get ticked once. Habits get practi
     authorRole: "Chief Data Scientist",
     readTime: 7,
     views: 786,
-    createdAt: "2026-04-27T09:00:00.000Z",
+    createdAt: "2026-07-14T09:00:00.000Z",
     content: `Every quarter, we brief boards and leadership teams on the state of enterprise AI. The questions are always the same, so consider this the briefing without the boardroom: what's actually working with LLMs in enterprises, what isn't, and how to tell them apart in your own organisation.
 
 ## The signal: where LLMs reliably earn their keep
@@ -920,7 +920,7 @@ The signal is real; it's just quieter than the noise. The organisations benefiti
     authorRole: "Head of AI Engineering",
     readTime: 6,
     views: 523,
-    createdAt: "2026-04-10T15:45:00.000Z",
+    createdAt: "2026-07-08T15:45:00.000Z",
     content: `Every data scientist knows the notebook. It's where insights are born, hairs are pulled, and — if we're honest — where a little too much of the work goes to die. The journey from "it works in my notebook" to "it runs the business" passes through a messy middle that nobody photographs. Here's the map.
 
 ## Why notebooks lie
@@ -963,7 +963,7 @@ Respect the notebook. Then help its best ideas grow up.`,
     authorRole: "Chief Data Scientist",
     readTime: 4,
     views: 288,
-    createdAt: "2026-03-24T10:15:00.000Z",
+    createdAt: "2026-07-03T10:15:00.000Z",
     content: `Here's a scene replayed in companies everywhere: the CFO asks for revenue. Marketing exports one number from the BI tool, finance pulls another from the warehouse, and the sales dashboard shows a third. All three are correct — by their own definitions. The meeting becomes an archaeology expedition into SQL instead of a decision. The missing piece has an unglamorous name: a semantic layer.
 
 ## What it actually is
@@ -1266,7 +1266,7 @@ Our infrastructure is Terraform-first, our culture blameless, and our on-call qu
       "FinOps instincts — cost dashboards, right-sizing, lifecycle rules",
     ],
     active: true,
-    createdAt: "2026-06-24T09:00:00.000Z",
+    createdAt: "2026-07-04T09:00:00.000Z",
   },
   {
     slug: "fullstack-developer-nextjs",
@@ -1287,7 +1287,7 @@ You'll ship to production weekly, own features end-to-end (API route to animatio
       "Design sensibility: you notice misaligned pixels and it bothers you",
     ],
     active: true,
-    createdAt: "2026-06-10T09:00:00.000Z",
+    createdAt: "2026-07-03T09:00:00.000Z",
   },
   {
     slug: "analytics-consultant",
@@ -1308,7 +1308,7 @@ This is a craft role for someone who loves both spreadsheets and sentences: you'
       "Comfort with Indian enterprise realities: messy data, real deadlines",
     ],
     active: true,
-    createdAt: "2026-05-28T09:00:00.000Z",
+    createdAt: "2026-07-02T09:00:00.000Z",
   },
   {
     slug: "data-analyst-intern",
@@ -1414,8 +1414,8 @@ export const events: EventItemSeed[] = [
     image: "/images/event-2.png",
   },
   {
-    title: "LFRDCA at Big Data Summit 2025",
-    date: "2025-11-14T04:30:00.000Z",
+    title: "LFRDCA at Big Data Summit 2026",
+    date: "2026-08-14T04:30:00.000Z",
     location: "Delhi",
     type: "Conference",
     description:
@@ -1424,7 +1424,7 @@ export const events: EventItemSeed[] = [
   },
   {
     title: "Campus Connect: Data Careers",
-    date: "2025-08-22T11:00:00.000Z",
+    date: "2026-07-31T11:00:00.000Z",
     location: "Virtual",
     type: "Webinar",
     description:

@@ -27,19 +27,19 @@ interface GatewayState {
 
 const INCIDENTS = [
   {
-    date: "18 Jun 2026",
+    date: "12 Aug 2026",
     title: "Elevated API latency in the NCR region",
     resolved:
       "An upstream DNS provider had a wobble; traffic was re-routed within 22 minutes. Total impact: slower responses, zero failures.",
   },
   {
-    date: "02 Apr 2026",
+    date: "29 Jul 2026",
     title: "AI assistant answering slowly",
     resolved:
       "Our model provider degraded for roughly five hours. Requests were queued and flushed by evening; no conversation history was lost.",
   },
   {
-    date: "27 Jan 2026",
+    date: "16 Jul 2026",
     title: "Brief database failover",
     resolved:
       "Automated failover did its job during routine maintenance — 41 seconds of write downtime, zero data loss, one engineer’s heartbeat skipped.",

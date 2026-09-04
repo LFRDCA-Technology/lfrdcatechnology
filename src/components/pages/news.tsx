@@ -226,9 +226,11 @@ export default function NewsPage() {
             <div className="flex flex-wrap justify-center gap-4 mt-8">
               <a
                 href="mailto:lfrdcatechnologies@outlook.com"
-                className="inline-flex items-center justify-center gap-2 rounded-[3000px] border-[1.5px] border-ink bg-dusty text-ink font-sans uppercase tracking-[0.14em] text-[14px] px-9 py-[18px] shadow-sketch-btn transition-all duration-200 hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[6px_-6px_0_0_#333333] cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 rounded-[3000px] border-[1.5px] border-ink bg-dusty text-ink font-sans uppercase tracking-[0.14em] text-[14px] px-5 sm:px-9 py-[18px] text-center max-w-full shadow-sketch-btn transition-all duration-200 hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[6px_-6px_0_0_#333333] cursor-pointer"
               >
-                lfrdcatechnologies@outlook.com
+                <span className="break-all">
+                  lfrdcatechnologies@outlook.com
+                </span>
               </a>
               <PillButton to="/contact" variant="dark" size="lg">
                 Or use the form

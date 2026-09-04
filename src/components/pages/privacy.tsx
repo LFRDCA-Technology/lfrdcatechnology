@@ -29,7 +29,7 @@ export default function PrivacyPage() {
               Privacy, in <em className="font-normal">plain</em> words.
             </>
           }
-          parenthetical="Last updated: January 2026"
+          parenthetical="Last updated: August 2026"
         />
         <DoodleStar
           className="absolute top-24 right-[6%] hidden md:block animate-wiggle"

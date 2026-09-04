@@ -52,7 +52,7 @@ export default function GdprPage() {
               required.
             </>
           }
-          parenthetical="Last updated: January 2026"
+          parenthetical="Last updated: August 2026"
         />
         <DoodleStar
           className="absolute top-24 right-[6%] hidden md:block animate-wiggle"

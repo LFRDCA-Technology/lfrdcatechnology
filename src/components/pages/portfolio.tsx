@@ -69,7 +69,7 @@ export default function PortfolioPage() {
             Proof, not <em className="font-normal">promises</em>.
           </>
         }
-        parenthetical="six stories we retell at parties"
+        parenthetical="six stories we retell at parties (a couple pre-date the name)"
       >
         <Squiggle
           variant="underline"

@@ -78,7 +78,7 @@ export function Squiggle({
       height={height}
       fill="none"
       aria-hidden="true"
-      className={cn("pointer-events-none select-none", className)}
+      className={cn("pointer-events-none select-none max-w-full", className)}
     >
       <path
         d={PATHS[variant]}
