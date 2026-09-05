@@ -9,7 +9,6 @@ import { useToast } from "@/hooks/use-toast";
 import {
   FieldLabel,
   PillButton,
-  SketchCard,
   SketchInput,
 } from "@/components/site/ui";
 import { DoodleStar, Squiggle } from "@/components/site/squiggle";
@@ -123,40 +122,7 @@ export default function LoginPage() {
         </PillButton>
       </form>
 
-      {/* ── Demo credentials helper ─────────────────────────────────────────── */}
-      <SketchCard className="mt-8 p-5 sm:p-6" hover={false}>
-        <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.14em] text-charcoal mb-3">
-          Just looking? (demo logins)
-        </p>
-        <p className="font-sans text-[12px] tracking-tight text-charcoal leading-relaxed">
-          Demo: demo@lfrdca.tech / Demo@123 · Admin: admin@lfrdca.tech /
-          Admin@123
-        </p>
-        <div className="flex flex-wrap gap-3 mt-4">
-          <PillButton
-            size="sm"
-            type="button"
-            onClick={() => {
-              setEmail("demo@lfrdca.tech");
-              setPassword("Demo@123");
-            }}
-          >
-            Fill demo
-          </PillButton>
-          <PillButton
-            size="sm"
-            type="button"
-            onClick={() => {
-              setEmail("admin@lfrdca.tech");
-              setPassword("Admin@123");
-            }}
-          >
-            Fill admin
-          </PillButton>
-        </div>
-      </SketchCard>
-
-      <p className="font-sans text-sm tracking-tight text-charcoal text-center mt-8">
+      <p className="font-sans text-sm tracking-tight text-charcoal text-center mt-10">
         New here?{" "}
         <Link to="/register" className="link-coral">
           Create an account →

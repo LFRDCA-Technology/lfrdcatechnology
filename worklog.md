@@ -252,3 +252,20 @@ Stage Summary:
 - Timeline now canonically July 2026-founded everywhere (story/about/investors/status/legal/blog/whitepapers/events) with a coherent "practice → company" narrative that preserves all track-record numbers
 - Smoothness: page transitions, reduced-motion respect, keyboard focus rings, zero horizontal scroll on all routes
 - All verification green; platform fully operational
+
+---
+Task ID: 5
+Agent: main (Z.ai Code)
+Task: Remove demo login from the sign-in page
+
+Work Log:
+- Removed the "Just looking? (demo logins)" SketchCard block from src/components/pages/login.tsx (credentials text + "Fill demo" / "Fill admin" quick-fill buttons)
+- Removed the now-unused SketchCard import to keep ESLint clean
+- Bumped the "New here? Create an account →" spacing from mt-8 to mt-10 so the page keeps its rhythm without the card
+- Verified with agent-browser at http://localhost:3000/#/login: page renders with just email/password form + sign-in button + register link; no console/page errors; GET / served 200
+- Ran `bun run lint` — clean
+
+Stage Summary:
+- Sign-in page no longer exposes demo/admin credentials; login flow is now purely real credential based (JWT httpOnly cookie flow unchanged)
+- Register page confirmed to contain no demo-login helper either
+- Demo account still exists in seed data (src/lib/seed.ts) but is no longer advertised anywhere in the sign-in UI
