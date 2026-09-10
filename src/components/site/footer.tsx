@@ -67,7 +67,7 @@ export function Footer() {
       {/* link columns */}
       <div className="max-w-6xl mx-auto px-5 sm:px-8 py-12 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 border-t-[1.5px] border-paper/15">
         <div className="flex flex-col gap-3 col-span-2 md:col-span-1">
-          <span className="font-serif text-2xl">LFRDCA</span>
+          <img src="/images/logo-lfrdca.png.png" alt="LFRDCA Technologies" className="h-10 w-auto object-contain self-start" />
           <p className="font-sans text-[13px] leading-relaxed tracking-tight text-paper/70 max-w-[240px]">
             An AI-powered information technology company crafting data,
             intelligence and analytics for brave teams.
@@ -111,7 +111,7 @@ export function Footer() {
           </p>
           <p className="font-sans text-[12px] tracking-tight text-paper/60 text-center sm:text-right">
             Designed &amp; developed by{" "}
-            <span className="text-coral">Satyam RojhaX</span> &amp; its associates
+            <span className="text-coral">LFRDCA Technologies</span> &amp; It's Associates.
           </p>
         </div>
       </div>

@@ -6,11 +6,11 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   return NextResponse.json({
-    projects: "120+",
-    clients: "80+",
+    projects: "13+",
+    clients: "19",
     experts: "45+",
-    awards: "12",
-    countries: "9",
-    satisfaction: "98%",
+    awards: "2",
+    countries: "3",
+    satisfaction: "83%",
   });
 }

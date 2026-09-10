@@ -218,7 +218,7 @@ export default function DocsPage() {
                   Everything lives under <code className="font-mono text-[13px]">/api</code> on
                   the same origin you’re browsing — there’s no separate API
                   host to configure. In these docs we write it as{" "}
-                  <code className="font-mono text-[13px]">https://lfrdca.tech</code>, but
+                  <code className="font-mono text-[13px]">https://lfrdcatechnology.cooo.in</code>, but
                   a relative path works identically.
                 </p>
                 <ul className="flex flex-col gap-2.5 max-w-2xl">
@@ -281,7 +281,7 @@ export default function DocsPage() {
                 </span>
                 <CodeBlock
                   label="Register example"
-                  code={`curl -X POST https://lfrdca.tech/api/auth/register \\
+                  code={`curl -X POST https://lfrdcatechnology.cooo.in/api/auth/register \\
   -H "Content-Type: application/json" \\
   -c cookies.txt \\
   -d '{"name":"Asha Verma","email":"asha@example.com","password":"at-least-8-chars"}'`}
@@ -307,7 +307,7 @@ const { user } = await res.json();`}
                 </span>
                 <CodeBlock
                   label="Auth check example"
-                  code={`curl https://lfrdca.tech/api/auth/me --cookie "lfrdca_token=<your-jwt>"
+                  code={`curl https://lfrdcatechnology.cooo.in/api/auth/me --cookie "lfrdca_token=<your-jwt>"
 # → { "user": { "id": "…", "name": "Asha Verma", "role": "USER", … } }`}
                 />
               </div>
@@ -330,7 +330,7 @@ const { user } = await res.json();`}
               </div>
               <CodeBlock
                 label="Content example"
-                code={`curl "https://lfrdca.tech/api/posts?category=Analytics&q=forecasting&limit=3"
+                code={`curl "https://lfrdcatechnology.cooo.in/api/posts?category=Analytics&q=forecasting&limit=3"
 
 # {
 #   "posts": [ { "slug": "…", "title": "…", "excerpt": "…", … } ],
@@ -355,14 +355,14 @@ const { user } = await res.json();`}
               <div className="flex flex-col gap-4">
                 <CodeBlock
                   label="Newsletter example"
-                  code={`curl -X POST https://lfrdca.tech/api/newsletter \\
+                  code={`curl -X POST https://lfrdcatechnology.cooo.in/api/newsletter \\
   -H "Content-Type: application/json" \\
   -d '{"email":"asha@example.com"}'
 # → { "ok": true, "already": false }`}
                 />
                 <CodeBlock
                   label="Quote example"
-                  code={`curl -X POST https://lfrdca.tech/api/quote \\
+                  code={`curl -X POST https://lfrdcatechnology.cooo.in/api/quote \\
   -H "Content-Type: application/json" \\
   -d '{
     "name": "Asha Verma",

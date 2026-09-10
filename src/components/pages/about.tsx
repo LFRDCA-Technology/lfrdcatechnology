@@ -17,11 +17,11 @@ import {
 import { DoodleStar, HandArrow, Squiggle } from "@/components/site/squiggle";
 
 const FALLBACK_STATS: CompanyStats = {
-  projects: "120+",
+  projects: "13+",
   clients: "80+",
   experts: "45+",
   awards: "12",
-  countries: "9",
+  countries: "3",
   satisfaction: "98%",
 };
 

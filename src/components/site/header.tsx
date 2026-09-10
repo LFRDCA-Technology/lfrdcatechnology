@@ -30,14 +30,10 @@ export function Header({ onOpenNav }: { onOpenNav: () => void }) {
         <Link
           to="/"
           aria-label="LFRDCA Technologies — home"
-          className="group flex items-baseline gap-2"
+          className="group flex items-center gap-2"
         >
-          <span className="font-serif font-medium text-xl sm:text-2xl tracking-tight">
-            LFRDCA
-          </span>
-          <span className="hidden sm:inline font-sans text-[11px] uppercase tracking-[0.2em] text-charcoal group-hover:text-coral transition-colors">
-            Technologies
-          </span>
+          <img src="/images/logo-lfrdca.png.png" alt="LFRDCA Technologies" className="h-10 w-auto object-contain" />
+          <span className="font-serif text-xl font-medium tracking-wide whitespace-nowrap hidden sm:block">LFRDCA Technologies</span>
         </Link>
 
         <div className="flex items-center gap-3 sm:gap-4">

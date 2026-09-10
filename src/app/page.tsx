@@ -9,7 +9,6 @@ import { RouterProvider, useRouter } from "@/lib/router";
 import { Header } from "@/components/site/header";
 import { NavOverlay } from "@/components/site/nav-overlay";
 import { Footer } from "@/components/site/footer";
-import { ChatWidget } from "@/components/site/chat-widget";
 import { NotFoundPage, matchRoute } from "@/components/pages/registry";
 
 function RouteOutlet() {
@@ -41,7 +40,6 @@ export default function App() {
           <NavOverlay open={navOpen} onClose={() => setNavOpen(false)} />
           <RouteOutlet />
           <Footer />
-          <ChatWidget />
         </div>
       </RouterProvider>
     </MotionConfig>

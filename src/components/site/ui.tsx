@@ -366,7 +366,7 @@ export function StatBlock({
       <span className="font-serif font-light text-[clamp(36px,5vw,58px)] leading-none">
         {value}
       </span>
-      <span className="font-sans text-[12px] uppercase tracking-[0.14em] text-charcoal">
+      <span className="font-sans text-[12px] uppercase tracking-[0.14em] opacity-70">
         {label}
       </span>
     </div>
